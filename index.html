@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strata — Private · Local · Yours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c0c0b;
+  --surface: #141413;
+  --surface2: #1a1a18;
+  --border: rgba(255,255,255,0.07);
+  --border-mid: rgba(255,255,255,0.12);
+  --text-primary: #f0ede6;
+  --text-secondary: #8a8780;
+  --text-muted: #4a4946;
+  --accent: #c8b97a;
+  --accent-dim: rgba(200,185,122,0.10);
+  --accent-border: rgba(200,185,122,0.22);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+nav {
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+  animation: fadeDown 0.6s ease both;
+}
+.nav-logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 300; letter-spacing: 0.08em; color: var(--text-secondary); }
+.nav-logo span { color: var(--accent); }
+.nav-contact { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+.nav-contact:hover { color: var(--text-secondary); }
+
+.hero { padding: 7rem 0 5rem; animation: fadeUp 0.8s ease 0.1s both; }
+.hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.75rem; }
+.hero-title { font-size: clamp(3.5rem, 10vw, 6.5rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.035em; color: var(--text-primary); margin-bottom: 1.25rem; }
+.hero-tagline { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 2.5rem; }
+.hero-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 520px; line-height: 1.8; }
+
+section { padding: 5rem 0; animation: fadeUp 0.7s ease both; }
+.section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2.5rem; }
+.section-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text-primary); }
+.section-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 540px; margin-bottom: 2.5rem; }
+
+.rule { height: 0.5px; background: var(--border); }
+.rule-accent { height: 0.5px; background: linear-gradient(90deg, var(--accent-border), transparent); }
+
+.problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.problem-item { background: var(--surface); padding: 1.75rem; }
+.problem-icon { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+.problem-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+.problem-body { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+.steps { display: flex; flex-direction: column; border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.step { display: grid; grid-template-columns: 56px 1fr; border-bottom: 0.5px solid var(--border); background: var(--surface); transition: background 0.2s; }
+.step:last-child { border-bottom: none; }
+.step:hover { background: var(--surface2); }
+.step-num { display: flex; align-items: flex-start; justify-content: center; padding: 1.5rem 0; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); border-right: 0.5px solid var(--border); letter-spacing: 0.05em; }
+.step-content { padding: 1.5rem 1.75rem; }
+.step-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
+.step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+.filename-block { background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 2rem; }
+.filename-bar { background: var(--surface2); border-bottom: 0.5px solid var(--border); padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-mid); flex-shrink: 0; }
+.filename-bar-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-left: 6px; letter-spacing: 0.05em; }
+.filename-examples { padding: 1.5rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.filename { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-secondary); line-height: 1.5; word-break: break-all; }
+.filename .hi { color: var(--accent); }
+
+.deploy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.deploy-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.25s; }
+.deploy-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-border), transparent); }
+.deploy-card:hover { border-color: var(--border-mid); }
+.deploy-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border: 0.5px solid var(--accent-border); border-radius: 4px; padding: 3px 8px; margin-bottom: 1.25rem; }
+.deploy-name { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.75rem; }
+.deploy-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+.principle-block { background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px; padding: 3rem; position: relative; overflow: hidden; }
+.principle-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-border), transparent); }
+.principle-quote { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); line-height: 1.5; margin-bottom: 2rem; max-width: 580px; }
+.principle-points { display: flex; flex-direction: column; gap: 1rem; }
+.principle-point { display: flex; gap: 1rem; align-items: flex-start; }
+.pp-marker { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); padding-top: 3px; flex-shrink: 0; }
+.pp-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+.vision-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+.vision-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.75rem; }
+.vision-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.vision-card-body { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+.closing { padding: 6rem 0 5rem; text-align: center; }
+.closing-title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: var(--text-primary); line-height: 1.15; margin-bottom: 1.5rem; }
+.closing-title em { font-style: normal; color: var(--accent); }
+.closing-body { font-size: 1rem; color: var(--text-secondary); max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.8; }
+.closing-cta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); text-decoration: none; letter-spacing: 0.08em; border: 0.5px solid var(--accent-border); padding: 0.75rem 1.75rem; border-radius: 6px; transition: background 0.2s; display: inline-block; }
+.closing-cta:hover { background: var(--accent-dim); }
+
+footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-left { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em; }
+.footer-right a { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.footer-right a:hover { color: var(--accent); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px) {
+  .deploy-grid { grid-template-columns: 1fr; }
+  .principle-block { padding: 1.75rem; }
+  .step { grid-template-columns: 44px 1fr; }
+  .closing { padding: 4rem 0 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="wrap">
+  <nav>
+    <div class="nav-logo"><span>Boeger</span> Labs</div>
+    <a class="nav-contact" href="mailto:contact@boegerlabs.com">contact@boegerlabs.com</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <p class="hero-eyebrow">Document Intelligence · Built by Boeger Labs</p>
+    <h1 class="hero-title">Strata</h1>
+    <p class="hero-tagline">Private · Local · Yours</p>
+    <p class="hero-desc">A private, AI-powered system that takes every document, photo, and record from your life — and makes all of it searchable, organized, and connected. Forever. On hardware you own.</p>
+  </section>
+</div>
+
+<div class="rule-accent"></div>
+
+<div class="wrap">
+  <section>
+    <p class="section-label">The Problem</p>
+    <h2 class="section-title">Your life is full of dark data</h2>
+    <p class="section-sub">Documents that exist but can't be found. Photos without context. Records held hostage by services you don't control.</p>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="problem-icon">01 — Lost</div>
+        <div class="problem-title">Documents you can't find</div>
+        <div class="problem-body">Bills, medical records, contracts, tax docs buried in boxes or unsorted folders — impossible to locate when you actually need them.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">02 — Invisible</div>
+        <div class="problem-title">Photos with no context</div>
+        <div class="problem-body">Shoeboxes of photos from decades ago. No dates, no names, no way to search. Data that exists but cannot be accessed.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">03 — At risk</div>
+        <div class="problem-title">Cloud services you don't control</div>
+        <div class="problem-body">Existing solutions send your data to someone else's server. They can change their terms, raise prices, or shut down and take it with them.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<div class="wrap">
+  <section>
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Scan it in, walk away</h2>
+    <p class="section-sub">Five steps from physical paper to a structured, AI-readable archive. No manual filing. No decisions to make.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Capture</div>
+          <div class="step-desc">Scan a stack of documents with your phone. Auto-capture fires as you move pages — no buttons to tap.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Transfer</div>
+          <div class="step-desc">Files sync automatically from phone to your local machine over your home network. Nothing leaves your environment.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Read</div>
+          <div class="step-desc">OCR extracts text from every page. Documents with handwriting or stamps are image-preserved alongside the extracted text.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Classify</div>
+          <div class="step-desc">The AI reads the text, identifies what each document is, who it belongs to, and any action items that need attention.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Name &amp; File</div>
+          <div class="step-desc">Every document gets a precise structured filename — findable by a human in Finder or an AI searching programmatically.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filename-block">
+      <div class="filename-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span class="filename-bar-label">Example filenames — readable by humans and AI alike</span>
+      </div>
+      <div class="filename-examples">
+        <div class="filename"><span class="hi">2025-03-15</span>_adam_utility_electric_<span class="hi">con-edison</span>_march-bill.pdf</div>
+        <div class="filename"><span class="hi">2025-03-15</span>_jamie_medical_eob_<span class="hi">blue-shield</span>_dr-smith.pdf</div>
+        <div class="filename"><span class="hi">2025-01-10</span>_shared_insurance_auto_aaa_renewal_<span class="hi">EXPIRES-30-DAYS</span>.pdf</div>
+        <div class="filename"><span class="hi">2009-08-10</span>_adam-jamie_vacation_halfdome_summer-trip.jpg</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<div class="wrap">
+  <section>
+    <p class="section-label">Deployments</p>
+    <h2 class="section-title">Personal or business, same pipeline</h2>
+    <p class="section-sub">One architecture, two contexts. The same ingest, classify, and storage pipeline adapts to how you live or work.</p>
+    <div class="deploy-grid">
+      <div class="deploy-card">
+        <div class="deploy-tag">Personal</div>
+        <div class="deploy-name">Strata Personal</div>
+        <div class="deploy-desc">Built for a household. Ongoing documents as life happens, plus legacy archives going back decades. Old letters, shoeboxes of photos, years of accumulated paper — all made searchable and connected for the first time.</div>
+      </div>
+      <div class="deploy-card">
+        <div class="deploy-tag">Business</div>
+        <div class="deploy-name">Strata Business</div>
+        <div class="deploy-desc">Same pipeline, business context added. Invoices, contracts, statements, and vendor records organized around how a business actually operates. Decades of accumulated paper become a queryable database.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<div class="wrap">
+  <section>
+    <p class="section-label">The Principle</p>
+    <h2 class="section-title">You own the data. Completely.</h2>
+    <div class="principle-block">
+      <p class="principle-quote">Everything lives on hardware you own, processed by AI you control, never uploaded to a server you don't.</p>
+      <div class="principle-points">
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">No company can sell it, lose it, change their terms of service, or shut down and take it with them.</div>
+        </div>
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">Strata is the data layer. The AI assistant is the intelligence layer on top — able to reason over something real.</div>
+        </div>
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">As AI gets more powerful, your archive gets more valuable — not less.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<div class="wrap">
+  <section>
+    <p class="section-label">The Vision</p>
+    <h2 class="section-title">The data you capture today gets more powerful every year</h2>
+    <p class="section-sub">Every document you scan, every photo you ingest, every record you preserve — that's raw material. And raw material compounds.</p>
+    <div class="vision-cards">
+      <div class="vision-card">
+        <div class="vision-card-label">The Shoebox</div>
+        <div class="vision-card-body">A photograph with no label. A family gathering, maybe the late 1970s. Right now — dark data. With enough compute, Strata looks at the clothing, the cars, the film grain, and says: this was probably 1978.</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-card-label">The Grandmother</div>
+        <div class="vision-card-body">Someone who passed years ago appears in a photo from 1965. Strata finds every image she ever appeared in — across decades, across shoeboxes you haven't opened in years. A life reconstructed from fragments.</div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-card-label">The Diary</div>
+        <div class="vision-card-body">A diary written by hand in the 1990s. Strata reads it, indexes it, connects entries to photos from the same period. A timeline emerges — not just of paperwork, but of a life.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule-accent"></div>
+
+<div class="wrap">
+  <div class="closing">
+    <h2 class="closing-title">Nothing you capture today<br>becomes <em>obsolete.</em></h2>
+    <p class="closing-body">The archive you build now is the archive a much more powerful AI reasons over later. You're not just organizing your past — you're investing in your ability to understand it.</p>
+    <a class="closing-cta" href="mailto:contact@boegerlabs.com">Get in touch</a>
+  </div>
+
+  <footer>
+    <div class="footer-left">&copy; 2026 Boeger Labs &nbsp;·&nbsp; Independent AI research &amp; development</div>
+    <div class="footer-right"><a href="mailto:contact@boegerlabs.com">contact@boegerlabs.com</a></div>
+  </footer>
+</div>
+
+</body>
+</html>
