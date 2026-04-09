@@ -9,498 +9,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --navy:        #042C53;
-  --navy-mid:    #0C447C;
-  --bg:          #031e38;
-  --surface:     #042840;
-  --surface2:    #053050;
-  --border:      rgba(133,183,235,0.10);
-  --border-mid:  rgba(133,183,235,0.18);
-  --text-primary: #f0f4f8;
-  --text-secondary: #85B7EB;
-  --text-muted:   #378ADD;
-  --accent:       #B5D4F4;
-  --accent-dim:   rgba(181,212,244,0.08);
-  --accent-border:rgba(181,212,244,0.20);
-  --blue-mid:     #378ADD;
-  --blue-light:   #85B7EB;
-  --blue-pale:    #B5D4F4;
+  --navy:#042C53;--navy-mid:#0C447C;--bg:#031e38;--surface:#042840;--surface2:#053050;
+  --border:rgba(133,183,235,0.10);--border-mid:rgba(133,183,235,0.18);
+  --text-primary:#f0f4f8;--text-secondary:#85B7EB;--text-muted:#378ADD;
+  --accent:#B5D4F4;--accent-dim:rgba(181,212,244,0.08);--accent-border:rgba(181,212,244,0.20);
+  --blue-mid:#378ADD;--blue-light:#85B7EB;--blue-pale:#B5D4F4;
 }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-
-.grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.018;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 128px;
-}
-
-.wrap {
-  position: relative;
-  z-index: 1;
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* ── NAV ── */
-nav {
-  padding: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 0.5px solid var(--border);
-  animation: fadeDown 0.6s ease both;
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-/* Inline hex mark SVG as a nav logo icon */
-.nav-hex {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-}
-
-.nav-brand {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--blue-pale);
-  line-height: 1.2;
-}
-.nav-brand span {
-  display: block;
-  font-size: 10px;
-  font-weight: 300;
-  color: var(--blue-light);
-  letter-spacing: 0.10em;
-}
-
-.nav-contact {
-  font-family: 'Poppins', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--blue-light);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
-}
-.nav-contact:hover { color: var(--blue-pale); }
-
-/* ── HERO ── */
-.hero { padding: 7rem 0 5rem; animation: fadeUp 0.8s ease 0.1s both; }
-.hero-eyebrow {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  color: var(--blue-mid);
-  text-transform: uppercase;
-  margin-bottom: 1.75rem;
-}
-.hero-title {
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-  color: var(--text-primary);
-  margin-bottom: 1.25rem;
-}
-.hero-tagline {
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.18em;
-  color: var(--blue-light);
-  margin-bottom: 2.5rem;
-}
-.hero-desc {
-  font-size: 1.05rem;
-  font-weight: 300;
-  color: var(--blue-light);
-  max-width: 520px;
-  line-height: 1.85;
-}
-
-/* ── SECTIONS ── */
-section { padding: 5rem 0; animation: fadeUp 0.7s ease both; }
-.section-label {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  color: var(--blue-mid);
-  text-transform: uppercase;
-  margin-bottom: 2.5rem;
-}
-.section-title {
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-.section-sub {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--blue-light);
-  line-height: 1.8;
-  max-width: 540px;
-  margin-bottom: 2.5rem;
-}
-
-/* ── RULES ── */
-.rule { height: 0.5px; background: var(--border); }
-.rule-accent { height: 0.5px; background: linear-gradient(90deg, var(--accent-border), transparent); }
-
-/* ── PROBLEM GRID ── */
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 0.5px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
-.problem-item { background: var(--surface); padding: 1.75rem; }
-.problem-icon {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  color: var(--blue-mid);
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-}
-.problem-title {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-.problem-body {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--blue-light);
-  line-height: 1.7;
-}
-
-/* ── STEPS ── */
-.steps {
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
-.step {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  border-bottom: 0.5px solid var(--border);
-  background: var(--surface);
-  transition: background 0.2s;
-}
-.step:last-child { border-bottom: none; }
-.step:hover { background: var(--surface2); }
-.step-num {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 1.5rem 0;
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--blue-mid);
-  border-right: 0.5px solid var(--border);
-  letter-spacing: 0.05em;
-}
-.step-content { padding: 1.5rem 1.75rem; }
-.step-title {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 0.35rem;
-}
-.step-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--blue-light);
-  line-height: 1.7;
-}
-
-/* ── FILENAME BLOCK ── */
-.filename-block {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  margin-top: 2rem;
-}
-.filename-bar {
-  background: var(--surface2);
-  border-bottom: 0.5px solid var(--border);
-  padding: 0.75rem 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-mid); flex-shrink: 0; }
-.filename-bar-label {
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--blue-light);
-  margin-left: 6px;
-  letter-spacing: 0.05em;
-}
-.filename-examples { padding: 1.5rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; }
-.filename {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: var(--blue-light);
-  line-height: 1.5;
-  word-break: break-all;
-}
-.filename .hi { color: var(--blue-pale); font-weight: 600; }
-
-/* ── DEPLOY GRID ── */
-.deploy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.deploy-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 14px;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.25s;
-}
-.deploy-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
-}
-.deploy-card:hover { border-color: var(--border-mid); }
-.deploy-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blue-pale);
-  background: var(--accent-dim);
-  border: 0.5px solid var(--accent-border);
-  border-radius: 4px;
-  padding: 3px 8px;
-  margin-bottom: 1.25rem;
-}
-.deploy-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-}
-.deploy-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--blue-light);
-  line-height: 1.75;
-}
-
-/* ── PRINCIPLE ── */
-.principle-block {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 14px;
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-}
-.principle-block::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
-}
-.principle-quote {
-  font-size: clamp(1.05rem, 2.5vw, 1.4rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  line-height: 1.55;
-  margin-bottom: 2rem;
-  max-width: 580px;
-}
-.principle-points { display: flex; flex-direction: column; gap: 1rem; }
-.principle-point { display: flex; gap: 1rem; align-items: flex-start; }
-.pp-marker {
-  font-size: 10px;
-  font-weight: 300;
-  color: var(--blue-mid);
-  padding-top: 4px;
-  flex-shrink: 0;
-}
-.pp-text {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--blue-light);
-  line-height: 1.75;
-}
-
-/* ── VISION CARDS ── */
-.vision-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-.vision-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 12px;
-  padding: 1.75rem;
-}
-.vision-card-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blue-pale);
-  margin-bottom: 0.75rem;
-}
-.vision-card-body {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--blue-light);
-  line-height: 1.75;
-}
-
-/* ── CLOSING ── */
-.closing { padding: 6rem 0 5rem; text-align: center; }
-.closing-title {
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-}
-.closing-title em {
-  font-style: normal;
-  color: var(--blue-pale);
-}
-.closing-body {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--blue-light);
-  max-width: 460px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.85;
-}
-.closing-cta {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--blue-pale);
-  text-decoration: none;
-  letter-spacing: 0.08em;
-  border: 0.5px solid var(--accent-border);
-  padding: 0.75rem 1.75rem;
-  border-radius: 6px;
-  transition: background 0.2s;
-  display: inline-block;
-}
-.closing-cta:hover { background: var(--accent-dim); }
-
-/* ── FOOTER ── */
-footer {
-  padding: 2.5rem 0;
-  border-top: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.footer-left {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4px 0;
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--blue-mid);
-  letter-spacing: 0.05em;
-  line-height: 1.8;
-}
-.footer-hex { width: 18px; height: 18px; opacity: 0.7; }
-.footer-right a {
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--blue-mid);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-right a:hover { color: var(--blue-pale); }
-
-/* ── STRATA MARK in footer ── */
-.footer-strata {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.footer-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.footer-bar {
-  height: 3px;
-  border-radius: 1px;
-  background: var(--blue-mid);
-  opacity: 0.6;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 640px) {
-  .deploy-grid { grid-template-columns: 1fr; }
-  .principle-block { padding: 1.75rem; }
-  .step { grid-template-columns: 44px 1fr; }
-  .closing { padding: 4rem 0 3rem; }
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'Poppins',sans-serif;min-height:100vh;overflow-x:hidden;line-height:1.6;}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px;}
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 2rem;}
+nav{padding:2rem 0;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);animation:fadeDown 0.6s ease both;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-hex{width:28px;height:28px;flex-shrink:0;}
+.nav-brand{font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--blue-pale);line-height:1.2;}
+.nav-brand span{display:block;font-size:10px;font-weight:300;color:var(--blue-light);letter-spacing:0.10em;}
+.nav-contact{font-size:12px;font-weight:300;color:var(--blue-light);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;}
+.nav-contact:hover{color:var(--blue-pale);}
+.hero{padding:7rem 0 5rem;animation:fadeUp 0.8s ease 0.1s both;}
+.hero-eyebrow{font-size:11px;font-weight:400;letter-spacing:0.18em;color:var(--blue-mid);text-transform:uppercase;margin-bottom:1.75rem;}
+.hero-title{font-size:clamp(3.5rem,10vw,6.5rem);font-weight:700;line-height:0.92;letter-spacing:-0.035em;color:var(--text-primary);margin-bottom:1.25rem;}
+.hero-tagline{font-size:13px;font-weight:300;letter-spacing:0.18em;color:var(--blue-light);margin-bottom:2.5rem;}
+.hero-desc{font-size:1.05rem;font-weight:300;color:var(--blue-light);max-width:520px;line-height:1.85;margin-bottom:2rem;}
+.hero-sub{font-size:0.9rem;font-weight:300;color:var(--text-muted);max-width:480px;line-height:1.8;border-left:1px solid var(--border-mid);padding-left:1.25rem;}
+section{padding:5rem 0;animation:fadeUp 0.7s ease both;}
+.section-label{font-size:10px;font-weight:400;letter-spacing:0.18em;color:var(--blue-mid);text-transform:uppercase;margin-bottom:2.5rem;}
+.section-title{font-size:2rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:1rem;color:var(--text-primary);}
+.section-sub{font-size:1rem;font-weight:300;color:var(--blue-light);line-height:1.8;max-width:540px;margin-bottom:2.5rem;}
+.rule{height:0.5px;background:var(--border);}
+.rule-accent{height:0.5px;background:linear-gradient(90deg,var(--accent-border),transparent);}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;}
+.problem-item{background:var(--surface);padding:1.75rem;}
+.problem-icon{font-size:10px;font-weight:400;letter-spacing:0.12em;color:var(--blue-mid);margin-bottom:0.75rem;text-transform:uppercase;}
+.problem-title{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:0.5rem;}
+.problem-body{font-size:13px;font-weight:300;color:var(--blue-light);line-height:1.7;}
+.steps{display:flex;flex-direction:column;border:0.5px solid var(--border);border-radius:14px;overflow:hidden;}
+.step{display:grid;grid-template-columns:56px 1fr;border-bottom:0.5px solid var(--border);background:var(--surface);transition:background 0.2s;}
+.step:last-child{border-bottom:none;}
+.step:hover{background:var(--surface2);}
+.step-num{display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 0;font-size:11px;font-weight:300;color:var(--blue-mid);border-right:0.5px solid var(--border);letter-spacing:0.05em;}
+.step-content{padding:1.5rem 1.75rem;}
+.step-title{font-size:15px;font-weight:500;color:var(--text-primary);margin-bottom:0.35rem;}
+.step-desc{font-size:13px;font-weight:300;color:var(--blue-light);line-height:1.7;}
+.filename-block{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;margin-top:2rem;}
+.filename-bar{background:var(--surface2);border-bottom:0.5px solid var(--border);padding:0.75rem 1.25rem;display:flex;align-items:center;gap:6px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border-mid);flex-shrink:0;}
+.filename-bar-label{font-size:11px;font-weight:300;color:var(--blue-light);margin-left:6px;letter-spacing:0.05em;}
+.filename-examples{padding:1.5rem 1.75rem;display:flex;flex-direction:column;gap:0.75rem;}
+.filename{font-family:'Courier New',monospace;font-size:12px;color:var(--blue-light);line-height:1.5;word-break:break-all;}
+.filename .hi{color:var(--blue-pale);font-weight:600;}
+.deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.deploy-card{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:2rem;position:relative;overflow:hidden;transition:border-color 0.25s;display:flex;flex-direction:column;}
+.deploy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-border),transparent);}
+.deploy-card:hover{border-color:var(--border-mid);}
+.deploy-tag{display:inline-block;font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-pale);background:var(--accent-dim);border:0.5px solid var(--accent-border);border-radius:4px;padding:3px 8px;margin-bottom:1.25rem;}
+.deploy-name{font-size:1.3rem;font-weight:600;letter-spacing:-0.02em;color:var(--text-primary);margin-bottom:0.75rem;}
+.deploy-desc{font-size:13px;font-weight:300;color:var(--blue-light);line-height:1.75;margin-bottom:1.25rem;flex:1;}
+.deploy-for{font-size:11px;font-weight:400;letter-spacing:0.08em;color:var(--blue-mid);text-transform:uppercase;border-top:0.5px solid var(--border);padding-top:1rem;}
+.platform-block{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:3rem;position:relative;overflow:hidden;}
+.platform-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-border),transparent);}
+.platform-lead{font-size:clamp(1.05rem,2.5vw,1.35rem);font-weight:500;letter-spacing:-0.01em;color:var(--text-primary);line-height:1.55;margin-bottom:2rem;max-width:580px;}
+.platform-layers{display:flex;flex-direction:column;border:0.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:2rem;}
+.platform-layer{display:grid;grid-template-columns:120px 1fr;border-bottom:0.5px solid var(--border);transition:background 0.2s;}
+.platform-layer:last-child{border-bottom:none;}
+.platform-layer:hover{background:var(--surface2);}
+.layer-label{padding:1.25rem 1.5rem;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-pale);border-right:0.5px solid var(--border);display:flex;align-items:center;}
+.layer-desc{padding:1.25rem 1.5rem;font-size:13px;font-weight:300;color:var(--blue-light);line-height:1.7;display:flex;align-items:center;}
+.platform-note{font-size:13px;font-weight:300;color:var(--blue-mid);line-height:1.75;border-left:1px solid var(--border-mid);padding-left:1.25rem;max-width:500px;}
+.principle-block{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:3rem;position:relative;overflow:hidden;}
+.principle-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-border),transparent);}
+.principle-quote{font-size:clamp(1.05rem,2.5vw,1.4rem);font-weight:500;letter-spacing:-0.01em;color:var(--text-primary);line-height:1.55;margin-bottom:2rem;max-width:580px;}
+.principle-points{display:flex;flex-direction:column;gap:1rem;}
+.principle-point{display:flex;gap:1rem;align-items:flex-start;}
+.pp-marker{font-size:10px;font-weight:300;color:var(--blue-mid);padding-top:4px;flex-shrink:0;}
+.pp-text{font-size:14px;font-weight:300;color:var(--blue-light);line-height:1.75;}
+.vision-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2.5rem;}
+.vision-card{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:1.75rem;}
+.vision-card-label{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:0.75rem;}
+.vision-card-body{font-size:13px;font-weight:300;color:var(--blue-light);line-height:1.75;}
+.closing{padding:6rem 0 5rem;text-align:center;}
+.closing-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:-0.03em;color:var(--text-primary);line-height:1.15;margin-bottom:1.5rem;}
+.closing-title em{font-style:normal;color:var(--blue-pale);}
+.closing-body{font-size:1rem;font-weight:300;color:var(--blue-light);max-width:460px;margin:0 auto 2.5rem;line-height:1.85;}
+.closing-cta{font-size:12px;font-weight:400;color:var(--blue-pale);text-decoration:none;letter-spacing:0.08em;border:0.5px solid var(--accent-border);padding:0.75rem 1.75rem;border-radius:6px;transition:background 0.2s;display:inline-block;}
+.closing-cta:hover{background:var(--accent-dim);}
+footer{padding:2.5rem 0;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-left{display:flex;align-items:center;flex-wrap:wrap;gap:4px 0;font-size:11px;font-weight:300;color:var(--blue-mid);letter-spacing:0.05em;line-height:1.8;}
+.footer-hex{width:18px;height:18px;opacity:0.7;margin-right:6px;}
+.footer-right a{font-size:11px;font-weight:300;color:var(--blue-mid);text-decoration:none;transition:color 0.2s;}
+.footer-right a:hover{color:var(--blue-pale);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){
+  .deploy-grid{grid-template-columns:1fr;}
+  .principle-block,.platform-block{padding:1.75rem;}
+  .platform-layer{grid-template-columns:80px 1fr;}
+  .step{grid-template-columns:44px 1fr;}
+  .closing{padding:4rem 0 3rem;}
 }
 </style>
 </head>
 <body>
 <div class="grain"></div>
 
-<!-- NAV -->
 <div class="wrap">
   <nav>
     <a class="nav-logo" href="#">
-      <!-- Inline Boeger Labs hex mark -->
       <svg class="nav-hex" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="26,14 20,24 8,24 2,14 8,4 20,4" stroke="#85B7EB" stroke-width="1.2" fill="none"/>
         <polygon points="21,14 17,21 11,21 7,14 11,7 17,7" stroke="#85B7EB" stroke-width="0.6" fill="none" opacity="0.4"/>
@@ -512,22 +127,17 @@ footer {
         <line x1="14" y1="14" x2="20" y2="4"  stroke="#85B7EB" stroke-width="0.6" opacity="0.3"/>
         <circle cx="14" cy="14" r="2.5" fill="#B5D4F4"/>
       </svg>
-      <div class="nav-brand">
-        Boeger Labs
-        <span>Document Intelligence</span>
-      </div>
+      <div class="nav-brand">Boeger Labs<span>Document Intelligence</span></div>
     </a>
-    <a class="nav-contact" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+    <a class="nav-contact" href="mailto:hello@boegerlabs.com">hello@boegerlabs.com</a>
   </nav>
 </div>
 
-<!-- HERO -->
 <div class="wrap">
   <section class="hero">
-    <p class="hero-eyebrow">Document Intelligence · Built by Boeger Labs</p>
-    <h1 class="hero-title">
-      Strata
-      <svg style="display:inline-block; vertical-align:middle; width:1.3em; height:1.04em; margin-left:0.18em; margin-bottom:0.1em;" viewBox="0 0 512 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <p class="hero-eyebrow">Strata — Built by Boeger Labs</p>
+    <h1 class="hero-title">Strata
+      <svg style="display:inline-block;vertical-align:middle;width:1.3em;height:1.04em;margin-left:0.18em;margin-bottom:0.1em;" viewBox="0 0 512 250" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="156" y="0"   width="199" height="47" rx="12" fill="#B5D4F4"/>
         <rect x="131" y="61"  width="249" height="47" rx="12" fill="#85B7EB"/>
         <rect x="106" y="122" width="299" height="47" rx="12" fill="#378ADD"/>
@@ -535,13 +145,13 @@ footer {
       </svg>
     </h1>
     <p class="hero-tagline">Private · Local · Yours</p>
-    <p class="hero-desc">A private, AI-powered system that takes every document, photo, and record from your life — and makes all of it searchable, organized, and connected. Forever. On hardware you own.</p>
+    <p class="hero-desc">Every document, photo, and record from your life — organized, searchable, and permanently yours. A private data vault that runs on hardware you own and gets more intelligent over time.</p>
+    <p class="hero-sub">No cloud. No subscriptions. No company between you and your own history.</p>
   </section>
 </div>
 
 <div class="rule-accent"></div>
 
-<!-- THE PROBLEM -->
 <div class="wrap">
   <section>
     <p class="section-label">The Problem</p>
@@ -569,55 +179,20 @@ footer {
 
 <div class="rule"></div>
 
-<!-- HOW IT WORKS -->
 <div class="wrap">
   <section>
     <p class="section-label">How It Works</p>
     <h2 class="section-title">Scan it in, walk away</h2>
     <p class="section-sub">Five steps from physical paper to a structured, AI-readable archive. No manual filing. No decisions to make.</p>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-title">Capture</div>
-          <div class="step-desc">Scan a stack of documents with your phone. Auto-capture fires as you move pages — no buttons to tap.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-title">Transfer</div>
-          <div class="step-desc">Files sync automatically from phone to your local machine over your home network. Nothing leaves your environment.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-title">Read</div>
-          <div class="step-desc">OCR extracts text from every page. Documents with handwriting or stamps are image-preserved alongside the extracted text.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-content">
-          <div class="step-title">Classify</div>
-          <div class="step-desc">The AI reads the text, identifies what each document is, who it belongs to, and any action items that need attention.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">05</div>
-        <div class="step-content">
-          <div class="step-title">Name &amp; File</div>
-          <div class="step-desc">Every document gets a precise structured filename — findable by a human in Finder or an AI searching programmatically.</div>
-        </div>
-      </div>
+      <div class="step"><div class="step-num">01</div><div class="step-content"><div class="step-title">Capture</div><div class="step-desc">Scan a stack of documents with your phone. Auto-capture fires as you move pages — no buttons to tap.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-content"><div class="step-title">Transfer</div><div class="step-desc">Files sync automatically from phone to your local machine over your home network. Nothing leaves your environment.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-content"><div class="step-title">Read</div><div class="step-desc">OCR extracts text from every page. Documents with handwriting or stamps are image-preserved alongside the extracted text.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-content"><div class="step-title">Classify</div><div class="step-desc">The AI reads the text, identifies what each document is, who it belongs to, and any action items that need attention.</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-content"><div class="step-title">Name &amp; File</div><div class="step-desc">Every document gets a precise structured filename — findable by a human in Finder or an AI searching programmatically.</div></div></div>
     </div>
-
     <div class="filename-block">
-      <div class="filename-bar">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <span class="filename-bar-label">Example filenames — readable by humans and AI alike</span>
-      </div>
+      <div class="filename-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="filename-bar-label">Example filenames — readable by humans and AI alike</span></div>
       <div class="filename-examples">
         <div class="filename"><span class="hi">2025-03-15</span>_adam_utility_electric_<span class="hi">con-edison</span>_march-bill.pdf</div>
         <div class="filename"><span class="hi">2025-03-15</span>_jamie_medical_eob_<span class="hi">blue-shield</span>_dr-smith.pdf</div>
@@ -630,7 +205,30 @@ footer {
 
 <div class="rule"></div>
 
-<!-- DEPLOYMENTS -->
+<div class="wrap">
+  <section>
+    <p class="section-label">The Platform</p>
+    <h2 class="section-title">A data vault built for AI to reason over</h2>
+    <p class="section-sub">Strata is more than a filing system. It's a structured private data layer — designed from the ground up to be read, searched, and understood by an AI assistant that knows you.</p>
+    <div class="platform-block">
+      <p class="platform-lead">Strata stores everything. An AI agent on top can answer questions across all of it.</p>
+      <div class="platform-layers">
+        <div class="platform-layer">
+          <div class="layer-label">Data Layer</div>
+          <div class="layer-desc">Strata — every document, photo, health record, and communication ingested, classified, and permanently stored on your hardware.</div>
+        </div>
+        <div class="platform-layer">
+          <div class="layer-label">Intelligence Layer</div>
+          <div class="layer-desc">A local AI agent that reads your vault and answers questions across years of stored records — privately, on your machine, with no data leaving your environment.</div>
+        </div>
+      </div>
+      <p class="platform-note">Ask where a document is. Ask what your insurance covers. Ask what was happening in your life in 2019. The vault has the answer — the agent surfaces it.</p>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
 <div class="wrap">
   <section>
     <p class="section-label">Deployments</p>
@@ -640,12 +238,14 @@ footer {
       <div class="deploy-card">
         <div class="deploy-tag">Personal</div>
         <div class="deploy-name">Strata Personal</div>
-        <div class="deploy-desc">Built for a household. Ongoing documents as life happens, plus legacy archives going back decades. Old letters, shoeboxes of photos, years of accumulated paper — all made searchable and connected for the first time.</div>
+        <div class="deploy-desc">Built for a household. Ongoing documents as life happens, plus legacy archives going back decades. Old letters, shoeboxes of photos, years of accumulated paper — all made searchable and connected for the first time. Pair it with a local AI assistant that knows your history and can answer questions across everything you've stored.</div>
+        <div class="deploy-for">For individuals and families who want to own their data</div>
       </div>
       <div class="deploy-card">
         <div class="deploy-tag">Business</div>
         <div class="deploy-name">Strata Business</div>
-        <div class="deploy-desc">Same pipeline, business context added. Invoices, contracts, statements, and vendor records organized around how a business actually operates. Decades of accumulated paper become a queryable database.</div>
+        <div class="deploy-desc">Same pipeline, business context added. Invoices, contracts, statements, and vendor records organized around how a business actually operates. Runs as a local appliance — your hardware, your office, your data. No cloud dependency, no vendor access, no ongoing subscription to a platform that could change tomorrow.</div>
+        <div class="deploy-for">For small businesses that accumulate documents and need to find them</div>
       </div>
     </div>
   </section>
@@ -653,7 +253,6 @@ footer {
 
 <div class="rule"></div>
 
-<!-- THE PRINCIPLE -->
 <div class="wrap">
   <section>
     <p class="section-label">The Principle</p>
@@ -661,18 +260,9 @@ footer {
     <div class="principle-block">
       <p class="principle-quote">Everything lives on hardware you own, processed by AI you control, never uploaded to a server you don't.</p>
       <div class="principle-points">
-        <div class="principle-point">
-          <div class="pp-marker">—</div>
-          <div class="pp-text">No company can sell it, lose it, change their terms of service, or shut down and take it with them.</div>
-        </div>
-        <div class="principle-point">
-          <div class="pp-marker">—</div>
-          <div class="pp-text">Strata is the data layer. The AI assistant is the intelligence layer on top — able to reason over something real.</div>
-        </div>
-        <div class="principle-point">
-          <div class="pp-marker">—</div>
-          <div class="pp-text">As AI gets more powerful, your archive gets more capable — not just stored, but understood and used.</div>
-        </div>
+        <div class="principle-point"><div class="pp-marker">—</div><div class="pp-text">No company can sell it, lose it, change their terms of service, or shut down and take it with them.</div></div>
+        <div class="principle-point"><div class="pp-marker">—</div><div class="pp-text">Strata is the data layer. The AI assistant is the intelligence layer on top — able to reason over something real, permanent, and entirely yours.</div></div>
+        <div class="principle-point"><div class="pp-marker">—</div><div class="pp-text">As AI gets more powerful, your archive gets more capable — not just stored, but understood and used.</div></div>
       </div>
     </div>
   </section>
@@ -680,63 +270,35 @@ footer {
 
 <div class="rule"></div>
 
-<!-- THE VISION -->
 <div class="wrap">
   <section>
     <p class="section-label">The Vision</p>
     <h2 class="section-title">The data you capture today gets more powerful every year</h2>
     <p class="section-sub">Every document you scan, every photo you ingest, every record you preserve — that's raw material. And raw material compounds.</p>
     <div class="vision-cards">
-      <div class="vision-card">
-        <div class="vision-card-label">The Shoebox</div>
-        <div class="vision-card-body">A photograph with no label. A family gathering, maybe the late 1970s. With enough compute, Strata looks at the clothing, the cars, the film grain, and says: this was probably 1978.</div>
-      </div>
-      <div class="vision-card">
-        <div class="vision-card-label">The Grandmother</div>
-        <div class="vision-card-body">Someone who passed years ago appears in a photo from 1965. Strata finds every image she ever appeared in — across decades, across shoeboxes you haven't opened in years. A life reconstructed from fragments.</div>
-      </div>
-      <div class="vision-card">
-        <div class="vision-card-label">The Diary</div>
-        <div class="vision-card-body">A diary written by hand in the 1990s. Strata reads it, indexes it, connects entries to photos from the same period. A timeline emerges — not just of paperwork, but of a life.</div>
-      </div>
+      <div class="vision-card"><div class="vision-card-label">The Shoebox</div><div class="vision-card-body">A photograph with no label. A family gathering, maybe the late 1970s. With enough compute, Strata looks at the clothing, the cars, the film grain, and says: this was probably 1978.</div></div>
+      <div class="vision-card"><div class="vision-card-label">The Grandmother</div><div class="vision-card-body">Someone who passed years ago appears in a photo from 1965. Strata finds every image she ever appeared in — across decades, across shoeboxes you haven't opened in years. A life reconstructed from fragments.</div></div>
+      <div class="vision-card"><div class="vision-card-label">The Diary</div><div class="vision-card-body">A diary written by hand in the 1990s. Strata reads it, indexes it, connects entries to photos from the same period. A timeline emerges — not just of paperwork, but of a life.</div></div>
     </div>
   </section>
 </div>
 
 <div class="rule-accent"></div>
 
-<!-- CLOSING -->
 <div class="wrap">
   <div class="closing">
     <h2 class="closing-title">Nothing you capture today<br>becomes <em>obsolete.</em></h2>
-    <p class="closing-body">The archive you build now is the archive a much more powerful AI reasons over later. You're not just organizing your past — you're building something you'll actually be able to use.</p>
-    <a class="closing-cta" href="mailto:Contact@BoegerLabs.com">Get in touch</a>
+    <p class="closing-body">The archive you build now is the archive a much more powerful AI reasons over later. You're not just organizing your past — you're building an intelligence layer that compounds with time.</p>
+    <a class="closing-cta" href="mailto:hello@boegerlabs.com">Get in touch</a>
   </div>
-
-  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
-      <!-- Boeger Labs hex mark -->
-      <svg class="footer-hex" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="17,9 13,16 5,16 1,9 5,2 13,2" stroke="#85B7EB" stroke-width="1" fill="none"/>
-        <circle cx="9" cy="9" r="2" fill="#B5D4F4"/>
-      </svg>
-      &copy; 2026 Boeger Labs
-      &nbsp;·&nbsp;
-      Independent AI Research &amp; Development
-      &nbsp;·&nbsp;
-      <!-- Strata pyramid mark -->
-      <svg style="display:inline-block; vertical-align:middle; width:16px; height:13px; margin-right:4px; position:relative; top:-1px;" viewBox="0 0 512 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="156" y="0"   width="199" height="47" rx="12" fill="#B5D4F4" opacity="0.7"/>
-        <rect x="131" y="61"  width="249" height="47" rx="12" fill="#85B7EB" opacity="0.7"/>
-        <rect x="106" y="122" width="299" height="47" rx="12" fill="#378ADD" opacity="0.7"/>
-        <rect x="81"  y="183" width="349" height="47" rx="12" fill="#185FA5" opacity="0.7"/>
-      </svg>
+      <svg class="footer-hex" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="17,9 13,16 5,16 1,9 5,2 13,2" stroke="#85B7EB" stroke-width="1" fill="none"/><circle cx="9" cy="9" r="2" fill="#B5D4F4"/></svg>
+      &copy; 2026 Boeger Labs &nbsp;·&nbsp; Independent AI Research &amp; Development &nbsp;·&nbsp;
+      <svg style="display:inline-block;vertical-align:middle;width:16px;height:13px;margin:0 4px;position:relative;top:-1px;" viewBox="0 0 512 250" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="156" y="0" width="199" height="47" rx="12" fill="#B5D4F4" opacity="0.7"/><rect x="131" y="61" width="249" height="47" rx="12" fill="#85B7EB" opacity="0.7"/><rect x="106" y="122" width="299" height="47" rx="12" fill="#378ADD" opacity="0.7"/><rect x="81" y="183" width="349" height="47" rx="12" fill="#185FA5" opacity="0.7"/></svg>
       Strata
     </div>
-    <div class="footer-right">
-      <a href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
-    </div>
+    <div class="footer-right"><a href="mailto:hello@boegerlabs.com">hello@boegerlabs.com</a></div>
   </footer>
 </div>
 
