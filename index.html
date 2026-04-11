@@ -408,12 +408,40 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
-  .hero-lockup { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-  .hero-mark img { width: 64px; height: 64px; }
+  /* ── GLOBAL ── */
+  .wrap { padding: 0 1.25rem; }
+
+  /* ── NAV ── */
+  nav { padding: 1.5rem 0; }
+  .nav-brand { font-size: 11px; }
+  .nav-contact { font-size: 11px; letter-spacing: 0.03em; }
+
+  /* ── HERO ── */
+  .hero { padding: 4rem 0 3rem; }
+  .hero-lockup { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-mark img { width: 60px; height: 60px; }
+  .hero-statement { font-size: 0.95rem; padding-left: 1.1rem; }
+
+  /* ── PRODUCTS ── */
+  .products-section { padding: 3rem 0; }
   .products-grid { grid-template-columns: 1fr; }
+  .product-card { padding: 1.75rem; }
+  .product-mark { width: 40px; height: 40px; }
+  .product-name { font-size: 1.2rem; }
+  .product-desc { font-size: 12px; }
+
+  /* ── BELIEF ── */
+  .belief-section { padding: 3rem 0; }
+  .belief-block { padding: 1.75rem; }
+  .belief-statement { font-size: 0.95rem; }
   .belief-pillars { grid-template-columns: 1fr; }
-  .belief-block { padding: 2rem; }
-  .product-card { padding: 2rem; }
+  .pillar { padding: 1rem 1.25rem; }
+  .pillar-body { font-size: 11px; }
+
+  /* ── FOOTER ── */
+  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 2rem 0; }
+  .footer-left { font-size: 10px; }
+  .footer-right { font-size: 10px; }
 }
 </style>
 </head>
@@ -431,7 +459,7 @@ footer {
         <span>Intelligent Systems</span>
       </div>
     </a>
-    <a class="nav-contact" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+    <a class="nav-contact" href="/cdn-cgi/l/email-protection#cd8ea2a3b9acaeb98d8fa2a8aaa8bf81acafbee3aea2a0"><span class="__cf_email__" data-cfemail="a6e5c9c8d2c7c5d2e6e4c9c3c1c3d4eac7c4d588c5c9cb">[email&#160;protected]</span></a>
   </nav>
 </div>
 
@@ -504,7 +532,7 @@ footer {
         </div>
         <div class="pillar">
           <div class="pillar-word">Permanent</div>
-          <div class="pillar-body">Flat files. Consistent naming. Works on any hardware, any OS, forever. No expiration date.</div>
+          <div class="pillar-body">Your data isn't locked inside an app or a proprietary format. It's plain files with consistent names — readable on any computer, with any tool, 30 years from now. No software required. No expiration date.</div>
         </div>
         <div class="pillar">
           <div class="pillar-word">Yours</div>
@@ -523,11 +551,4 @@ footer {
       <img class="footer-logo" src="boegerlabs_mark.svg" alt="">
       &copy; 2026 Boeger Labs &nbsp;·&nbsp; Independent AI Research &amp; Development
     </div>
-    <div class="footer-right">
-      <a href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
-    </div>
-  </footer>
-</div>
-
-</body>
-</html>
+    <div 
