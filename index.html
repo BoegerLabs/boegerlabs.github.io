@@ -222,11 +222,18 @@ nav {
 .product-card:hover { background: var(--surface2); }
 .product-card:hover::before { opacity: 1; }
 
+.product-marks {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
 .product-mark {
   width: 52px; height: 52px;
   border-radius: 50%;
-  margin-bottom: 1.75rem;
   opacity: 0.9;
+}
+.product-mark-plus {
+  font-size: 16px; font-weight: 300;
+  color: var(--border-mid);
 }
 
 .product-tag {
@@ -424,7 +431,7 @@ footer {
         <span>Intelligent Systems</span>
       </div>
     </a>
-    <a class="nav-contact" href="/cdn-cgi/l/email-protection#692a06071d080a1d292b060c0e0c1b25080b1a470a0604"><span class="__cf_email__" data-cfemail="d093bfbea4b1b3a49092bfb5b7b5a29cb1b2a3feb3bfbd">[email&#160;protected]</span></a>
+    <a class="nav-contact" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
   </nav>
 </div>
 
@@ -454,7 +461,11 @@ footer {
     <div class="products-grid">
 
       <a class="product-card" href="strata-personal/index.html">
-        <img class="product-mark" src="strata_final.svg" alt="Strata">
+        <div class="product-marks">
+          <img class="product-mark" src="strata_final.svg" alt="Strata">
+          <span class="product-mark-plus">+</span>
+          <img class="product-mark" src="bitty_final.svg" alt="Bitty">
+        </div>
         <div class="product-tag">Personal</div>
         <div class="product-name">Strata Personal</div>
         <div class="product-agent">with <span>Bitty</span></div>
@@ -463,7 +474,11 @@ footer {
       </a>
 
       <a class="product-card" href="strata-business/index.html">
-        <img class="product-mark" src="strata_final.svg" alt="Strata">
+        <div class="product-marks">
+          <img class="product-mark" src="strata_final.svg" alt="Strata">
+          <span class="product-mark-plus">+</span>
+          <img class="product-mark" src="nexus_final.svg" alt="Nexus">
+        </div>
         <div class="product-tag">Business</div>
         <div class="product-name">Strata Business</div>
         <div class="product-agent">with <span>Nexus</span></div>
@@ -508,4 +523,11 @@ footer {
       <img class="footer-logo" src="boegerlabs_mark.svg" alt="">
       &copy; 2026 Boeger Labs &nbsp;·&nbsp; Independent AI Research &amp; Development
     </div>
-    <div 
+    <div class="footer-right">
+      <a href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
