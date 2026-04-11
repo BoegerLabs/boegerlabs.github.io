@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Circle: center 256,256 r=248 -->
+  <circle cx="256" cy="256" r="248" fill="#042C53"/>
+
+  <!-- Orbit 1: tilted -35deg, rx=160 ry=52 -->
+  <ellipse cx="256" cy="256" rx="160" ry="52"
+    fill="none" stroke="#85B7EB" stroke-width="3.2" opacity="0.80"
+    transform="rotate(-35 256 256)"/>
+
+  <!-- Orbit 2: tilted +30deg, rx=134 ry=44 -->
+  <ellipse cx="256" cy="256" rx="134" ry="44"
+    fill="none" stroke="#378ADD" stroke-width="3.2" opacity="0.75"
+    transform="rotate(30 256 256)"/>
+
+  <!-- Center star -->
+  <circle cx="256" cy="256" r="11" fill="#B5D4F4"/>
+  <circle cx="256" cy="256" r="4.5" fill="#042C53"/>
+
+  <!-- Planets on orbits -->
+  <circle cx="387" cy="164.2" r="11"  fill="#B5D4F4"/>
+  <circle cx="125" cy="347.8" r="8"   fill="#85B7EB" opacity="0.85"/>
+  <circle cx="372" cy="323"   r="9.5" fill="#378ADD"/>
+
+  <!-- "Boeger" — upper pocket, centered between top of circle and orrery -->
+  <text x="256" y="90"
+    font-family="Poppins, sans-serif" font-size="42" font-weight="500"
+    fill="#B5D4F4" text-anchor="middle">Boeger</text>
+
+  <!-- "Labs" — lower pocket, centered between orrery and bottom of circle -->
+  <text x="256" y="446"
+    font-family="Poppins, sans-serif" font-size="42" font-weight="500"
+    fill="#B5D4F4" text-anchor="middle">Labs</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Circle: center 256,256 r=248 -->
+  <circle cx="256" cy="256" r="248" fill="#042C53"/>
+
+  <!-- Spoke lines from center to outer nodes -->
+  <line x1="256" y1="256" x2="156" y2="118" stroke="#85B7EB" stroke-width="2.2" opacity="0.65"/>
+  <line x1="256" y1="256" x2="371" y2="134" stroke="#85B7EB" stroke-width="2.2" opacity="0.65"/>
+  <line x1="256" y1="256" x2="397" y2="274" stroke="#85B7EB" stroke-width="2.2" opacity="0.65"/>
+  <line x1="256" y1="256" x2="218" y2="368" stroke="#85B7EB" stroke-width="2.2" opacity="0.65"/>
+  <line x1="256" y1="256" x2="124" y2="314" stroke="#85B7EB" stroke-width="2.2" opacity="0.65"/>
+
+  <!-- Cross connections -->
+  <line x1="156" y1="118" x2="371" y2="134" stroke="#378ADD" stroke-width="1.5" opacity="0.40"/>
+  <line x1="371" y1="134" x2="397" y2="274" stroke="#378ADD" stroke-width="1.5" opacity="0.40"/>
+  <line x1="218" y1="368" x2="124" y2="314" stroke="#378ADD" stroke-width="1.5" opacity="0.40"/>
+
+  <!-- Outer nodes -->
+  <circle cx="156" cy="118" r="10"  fill="#85B7EB"/>
+  <circle cx="371" cy="134" r="8.5" fill="#85B7EB"/>
+  <circle cx="397" cy="274" r="10"  fill="#378ADD"/>
+  <circle cx="218" cy="368" r="8.5" fill="#378ADD"/>
+  <circle cx="124" cy="314" r="8.5" fill="#85B7EB" opacity="0.80"/>
+
+  <!-- Center node -->
+  <circle cx="256" cy="256" r="18" fill="#B5D4F4"/>
+  <circle cx="256" cy="256" r="7.5" fill="#042C53"/>
+
+  <!-- "Nexus" — lower pocket, centered between lowest node and bottom of circle -->
+  <text x="256" y="448"
+    font-family="Poppins, sans-serif" font-size="42" font-weight="500"
+    fill="#B5D4F4" text-anchor="middle">Nexus</text>
+</svg>

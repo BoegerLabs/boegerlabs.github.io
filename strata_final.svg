@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;display=swap');</style>
+  </defs>
+
+  <circle cx="256" cy="256" r="248" fill="#042C53"/>
+
+  <!-- Bar 1 — narrowest, lightest, top -->
+  <rect x="156" y="118" width="200" height="48" rx="10" fill="#B5D4F4"/>
+  <!-- Bar 2 -->
+  <rect x="128" y="182" width="256" height="48" rx="10" fill="#85B7EB"/>
+  <!-- Bar 3 -->
+  <rect x="100" y="246" width="312" height="48" rx="10" fill="#378ADD"/>
+  <!-- Bar 4 — widest, darkest, bottom -->
+  <rect x="72"  y="310" width="368" height="48" rx="10" fill="#185FA5"/>
+
+  <!-- Strata label — lower pocket -->
+  <text x="256" y="430"
+    font-family="Poppins, sans-serif" font-size="42" font-weight="500"
+    fill="#B5D4F4" text-anchor="middle">Strata</text>
+</svg>
