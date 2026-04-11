@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strata Business — Private Document Intelligence</title>
+<link rel="icon" type="image/png" href="../strata_final.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:          #042C53;
+  --blue-deep:     #0C447C;
+  --blue-dark:     #185FA5;
+  --blue-mid:      #378ADD;
+  --blue-light:    #85B7EB;
+  --blue-pale:     #B5D4F4;
+  --bg:            #031e38;
+  --surface:       #042840;
+  --surface2:      #053050;
+  --border:        rgba(133,183,235,0.10);
+  --border-mid:    rgba(133,183,235,0.18);
+  --accent-dim:    rgba(181,212,244,0.06);
+  --accent-border: rgba(181,212,244,0.18);
+  --text-primary:  #f0f4f8;
+  --green:         #4ade80;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px;
+}
+
+.glow {
+  position: fixed; top: -20vh; left: 50%; transform: translateX(-50%);
+  width: 1000px; height: 600px;
+  background: radial-gradient(ellipse at center, rgba(55,138,221,0.05) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+.wrap {
+  position: relative; z-index: 1;
+  max-width: 860px; margin: 0 auto; padding: 0 2rem;
+}
+
+/* ── NAV ── */
+nav {
+  padding: 2.25rem 0;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+  animation: fadeDown 0.6s ease both;
+}
+
+.nav-left { display: flex; align-items: center; gap: 1.5rem; }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+
+.nav-logo img { width: 26px; height: 26px; border-radius: 50%; opacity: 0.85; }
+
+.nav-brand {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--blue-light); line-height: 1.25;
+}
+
+.nav-sep { font-size: 11px; color: var(--border-mid); }
+
+.nav-product {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--blue-pale);
+}
+
+.nav-contact {
+  font-size: 12px; font-weight: 300; color: var(--blue-light);
+  text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s;
+}
+.nav-contact:hover { color: var(--blue-pale); }
+
+/* ── HERO ── */
+.hero {
+  padding: 7rem 0 5rem;
+  animation: fadeUp 0.9s ease 0.1s both;
+}
+
+.hero-eyebrow {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.22em;
+  color: var(--blue-mid); text-transform: uppercase; margin-bottom: 2rem;
+}
+
+.hero-lockup {
+  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.75rem;
+}
+
+.hero-marks { display: flex; align-items: center; gap: 0.75rem; }
+
+.hero-marks img {
+  width: 72px; height: 72px; border-radius: 50%; opacity: 0.93;
+}
+
+.hero-marks .plus {
+  font-size: 18px; font-weight: 300; color: var(--border-mid);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 700; line-height: 0.95; letter-spacing: -0.03em;
+  color: var(--text-primary); margin-bottom: 1.5rem;
+}
+
+.hero-title em {
+  font-style: normal; color: var(--blue-pale); font-weight: 300;
+}
+
+.hero-tagline {
+  font-size: 12px; font-weight: 300; letter-spacing: 0.18em;
+  color: var(--blue-mid); text-transform: uppercase; margin-bottom: 2rem;
+}
+
+.hero-desc {
+  font-size: 1.05rem; font-weight: 300; color: var(--blue-light);
+  max-width: 540px; line-height: 1.9; margin-bottom: 1.5rem;
+}
+
+.hero-sub {
+  font-size: 0.9rem; font-weight: 300; color: var(--blue-mid);
+  max-width: 480px; line-height: 1.8;
+  border-left: 1px solid var(--border-mid); padding-left: 1.25rem;
+}
+
+/* ── SHARED ── */
+.rule { height: 0.5px; background: var(--border); }
+.rule-accent { height: 0.5px; background: linear-gradient(90deg, var(--accent-border), transparent); }
+
+section { padding: 5rem 0; animation: fadeUp 0.7s ease both; }
+
+.section-label {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.20em;
+  color: var(--blue-mid); text-transform: uppercase; margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 2rem; font-weight: 600; letter-spacing: -0.02em;
+  margin-bottom: 1rem; color: var(--text-primary);
+}
+
+.section-sub {
+  font-size: 1rem; font-weight: 300; color: var(--blue-light);
+  line-height: 1.85; max-width: 540px; margin-bottom: 2.5rem;
+}
+
+/* ── PROBLEM ── */
+.problem-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+  gap: 1px; background: var(--border);
+  border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden;
+}
+
+.problem-item { background: var(--surface); padding: 1.75rem; }
+
+.problem-icon {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
+  color: var(--blue-mid); margin-bottom: 0.75rem; text-transform: uppercase;
+}
+
+.problem-title {
+  font-size: 15px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;
+}
+
+.problem-body {
+  font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.75;
+}
+
+/* ── NEXUS ── */
+.nexus-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 16px; overflow: hidden; position: relative;
+}
+
+.nexus-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+}
+
+.nexus-header {
+  display: flex; align-items: center; gap: 1.25rem;
+  padding: 2.5rem 2.5rem 2rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.nexus-mark { width: 56px; height: 56px; border-radius: 50%; opacity: 0.92; }
+
+.nexus-intro-title {
+  font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--text-primary); margin-bottom: 0.25rem;
+}
+
+.nexus-intro-sub {
+  font-size: 12px; font-weight: 300; letter-spacing: 0.10em;
+  color: var(--blue-mid); text-transform: uppercase;
+}
+
+.nexus-body { padding: 2rem 2.5rem; }
+
+.nexus-lead {
+  font-size: 1rem; font-weight: 300; color: var(--blue-light);
+  line-height: 1.9; margin-bottom: 2rem; max-width: 580px;
+}
+
+.nexus-lead strong { color: var(--blue-pale); font-weight: 400; }
+
+.nexus-traits {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 1px; background: var(--border);
+  border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+
+.nexus-trait { background: var(--surface2); padding: 1.25rem 1.5rem; }
+
+.trait-label {
+  font-size: 12px; font-weight: 500; color: var(--blue-pale);
+  margin-bottom: 0.4rem; letter-spacing: -0.01em;
+}
+
+.trait-body {
+  font-size: 12px; font-weight: 300; color: var(--blue-light); line-height: 1.65;
+}
+
+/* ── SCENARIO ── */
+.scenario-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 16px; overflow: hidden; position: relative;
+}
+
+.scenario-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+}
+
+.scenario-header {
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.scenario-title {
+  font-size: 1.1rem; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--text-primary); margin-bottom: 0.4rem;
+}
+
+.scenario-sub {
+  font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.7;
+}
+
+/* Chat mockup */
+.chat-mock { padding: 1.75rem 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+.chat-label {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.14em;
+  color: var(--blue-mid); text-transform: uppercase; margin-bottom: 0.25rem;
+}
+
+.chat-row { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.chat-bubble-user {
+  align-self: flex-end;
+  background: var(--blue-dark);
+  border-radius: 12px 12px 4px 12px;
+  padding: 0.85rem 1.25rem;
+  max-width: 420px;
+  font-size: 13px; font-weight: 300; color: var(--blue-pale); line-height: 1.7;
+}
+
+.chat-bubble-nexus {
+  align-self: flex-start;
+  background: var(--surface2);
+  border: 0.5px solid var(--border-mid);
+  border-radius: 12px 12px 12px 4px;
+  padding: 0.85rem 1.25rem;
+  max-width: 480px;
+}
+
+.chat-sender {
+  font-size: 10px; font-weight: 500; color: var(--blue-pale);
+  letter-spacing: 0.08em; margin-bottom: 0.5rem; text-transform: uppercase;
+}
+
+.chat-line {
+  font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.8;
+  margin-bottom: 0.2rem;
+}
+
+.chat-line strong { color: var(--text-primary); font-weight: 500; }
+.chat-line .hi { color: var(--green); font-weight: 500; }
+
+/* ── HOW IT WORKS ── */
+.steps {
+  display: flex; flex-direction: column;
+  border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden;
+}
+
+.step {
+  display: grid; grid-template-columns: 56px 1fr;
+  border-bottom: 0.5px solid var(--border);
+  background: var(--surface); transition: background 0.2s;
+}
+.step:last-child { border-bottom: none; }
+.step:hover { background: var(--surface2); }
+
+.step-num {
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 1.5rem 0;
+  font-size: 11px; font-weight: 300; color: var(--blue-mid);
+  border-right: 0.5px solid var(--border); letter-spacing: 0.05em;
+}
+
+.step-content { padding: 1.5rem 1.75rem; }
+
+.step-title {
+  font-size: 15px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.35rem;
+}
+
+.step-desc {
+  font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.75;
+}
+
+/* filename block */
+.filename-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 14px; overflow: hidden; margin-top: 2rem;
+}
+
+.filename-bar {
+  background: var(--surface2); border-bottom: 0.5px solid var(--border);
+  padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 6px;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-mid); }
+
+.filename-bar-label {
+  font-size: 11px; font-weight: 300; color: var(--blue-light);
+  margin-left: 6px; letter-spacing: 0.05em;
+}
+
+.filename-examples {
+  padding: 1.5rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem;
+}
+
+.filename {
+  font-family: 'Courier New', monospace; font-size: 12px;
+  color: var(--blue-light); line-height: 1.5; word-break: break-all;
+}
+
+.filename .hi { color: var(--blue-pale); font-weight: 600; }
+
+/* ── DEPLOYMENT ── */
+.deploy-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 16px; padding: 3rem; position: relative; overflow: hidden;
+}
+
+.deploy-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+}
+
+.deploy-lead {
+  font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 500;
+  letter-spacing: -0.01em; color: var(--text-primary);
+  line-height: 1.6; margin-bottom: 2rem; max-width: 560px;
+}
+
+.deploy-specs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 1px; background: var(--border);
+  border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.deploy-spec { background: var(--surface2); padding: 1.25rem 1.5rem; }
+
+.spec-label {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.12em;
+  color: var(--blue-mid); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+
+.spec-value {
+  font-size: 13px; font-weight: 400; color: var(--blue-pale); line-height: 1.6;
+}
+
+.deploy-note {
+  font-size: 13px; font-weight: 300; color: var(--blue-mid); line-height: 1.8;
+  border-left: 1px solid var(--border-mid); padding-left: 1.25rem; max-width: 500px;
+}
+
+/* ── PRIVACY ── */
+.principle-block {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 16px; padding: 3rem; position: relative; overflow: hidden;
+}
+
+.principle-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+}
+
+.principle-quote {
+  font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 500;
+  letter-spacing: -0.01em; color: var(--text-primary);
+  line-height: 1.6; margin-bottom: 2rem; max-width: 560px;
+}
+
+.principle-points { display: flex; flex-direction: column; gap: 1rem; }
+
+.principle-point { display: flex; gap: 1rem; align-items: flex-start; }
+
+.pp-marker {
+  font-size: 10px; font-weight: 300; color: var(--blue-mid);
+  padding-top: 4px; flex-shrink: 0;
+}
+
+.pp-text {
+  font-size: 14px; font-weight: 300; color: var(--blue-light); line-height: 1.8;
+}
+
+/* ── CLOSING ── */
+.closing { padding: 6rem 0 5rem; text-align: center; }
+
+.closing-title {
+  font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700;
+  letter-spacing: -0.03em; color: var(--text-primary);
+  line-height: 1.15; margin-bottom: 1.5rem;
+}
+
+.closing-title em { font-style: normal; color: var(--blue-pale); }
+
+.closing-body {
+  font-size: 1rem; font-weight: 300; color: var(--blue-light);
+  max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.9;
+}
+
+.closing-cta {
+  font-size: 12px; font-weight: 400; color: var(--blue-pale);
+  text-decoration: none; letter-spacing: 0.08em;
+  border: 0.5px solid var(--accent-border); padding: 0.75rem 1.75rem;
+  border-radius: 6px; transition: background 0.2s; display: inline-block;
+}
+.closing-cta:hover { background: var(--accent-dim); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem 0; border-top: 0.5px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+
+.footer-left {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 300; color: var(--blue-mid); letter-spacing: 0.05em;
+}
+
+.footer-logo { width: 16px; height: 16px; border-radius: 50%; opacity: 0.6; }
+
+.footer-right a {
+  font-size: 11px; font-weight: 300; color: var(--blue-mid);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-right a:hover { color: var(--blue-pale); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .hero-lockup { flex-direction: column; align-items: flex-start; }
+  .hero-marks img { width: 52px; height: 52px; }
+  .nexus-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .nexus-body, .scenario-header, .chat-mock { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .deploy-block, .principle-block { padding: 2rem; }
+  .closing { padding: 4rem 0 3rem; }
+  .step { grid-template-columns: 44px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="glow"></div>
+
+<!-- NAV -->
+<div class="wrap">
+  <nav>
+    <div class="nav-left">
+      <a class="nav-logo" href="../index.html">
+        <img src="../boegerlabs_mark.svg" alt="Boeger Labs">
+        <span class="nav-brand">Boeger Labs</span>
+      </a>
+      <span class="nav-sep">/</span>
+      <span class="nav-product">Strata Business</span>
+    </div>
+    <a class="nav-contact" href="/cdn-cgi/l/email-protection#b7f4d8d9c3d6d4c3f7f5d8d2d0d2c5fbd6d5c499d4d8da"><span class="__cf_email__" data-cfemail="52113d3c2633312612103d373537201e3330217c313d3f">[email&#160;protected]</span></a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero">
+    <p class="hero-eyebrow">Strata Business — Built by Boeger Labs</p>
+    <div class="hero-lockup">
+      <div class="hero-marks">
+        <img src="../strata_final.svg" alt="Strata">
+        <span class="plus">+</span>
+        <img src="../nexus_final.svg" alt="Nexus" style="opacity:0.7;">
+      </div>
+    </div>
+    <h1 class="hero-title">Every document.<br><em>Always findable.</em></h1>
+    <p class="hero-tagline">Private · Local · No Cloud Required</p>
+    <p class="hero-desc">A document intelligence system for small businesses. Every invoice, contract, client record, and statement — automatically organized and permanently searchable. Paired with Nexus, a local AI agent that answers questions across years of your business records in seconds.</p>
+    <p class="hero-sub">Runs on hardware in your office. Your client data never leaves your building.</p>
+  </section>
+</div>
+
+<div class="rule-accent"></div>
+
+<!-- PROBLEM -->
+<div class="wrap">
+  <section>
+    <p class="section-label">The Problem</p>
+    <h2 class="section-title">Small businesses drown in documents</h2>
+    <p class="section-sub">Every client brings paperwork. Every vendor sends invoices. Every year adds another layer. Finding anything older than six months means a search through folders nobody organized consistently — and a client on hold while you look.</p>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="problem-icon">01 — Time</div>
+        <div class="problem-title">The document hunt</div>
+        <div class="problem-body">An audit request. A client dispute. A contract question. Finding the right document takes hours — time pulled from work that actually moves the business forward.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">02 — Risk</div>
+        <div class="problem-title">Client data on someone else's server</div>
+        <div class="problem-body">Cloud document platforms mean your client's financial records, contracts, and statements live on infrastructure you don't control — subject to terms that can change and breaches you can't prevent.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">03 — Scale</div>
+        <div class="problem-title">The backlog that never shrinks</div>
+        <div class="problem-body">Paper arrives faster than it gets filed. Legacy records from years ago sit in boxes untouched. Every new client adds more. The pile grows and the search gets harder.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- NEXUS -->
+<div class="wrap">
+  <section>
+    <p class="section-label">The Intelligence Layer</p>
+    <h2 class="section-title">Meet Nexus</h2>
+    <div class="nexus-block">
+      <div class="nexus-header">
+        <img class="nexus-mark" src="../nexus_final.svg" alt="Nexus">
+        <div>
+          <div class="nexus-intro-title">Nexus</div>
+          <div class="nexus-intro-sub">Your local AI agent for business documents</div>
+        </div>
+      </div>
+      <div class="nexus-body">
+        <p class="nexus-lead">
+          Nexus is a <strong>local AI agent</strong> that sits on top of your Strata document archive and answers questions across all of it. Ask about a client's payment history. Find every contract with a specific vendor. Pull all invoices from a given quarter. Nexus searches years of organized records and surfaces the answer in seconds.
+        </p>
+        <p class="nexus-lead">
+          He runs entirely on <strong>hardware in your office</strong> — no internet connection required to use him, no data sent to a cloud service, no third-party with access to your client records. Your business data stays exactly where it belongs.
+        </p>
+        <div class="nexus-traits">
+          <div class="nexus-trait">
+            <div class="trait-label">Answers questions across years</div>
+            <div class="trait-body">Ask in plain language. Nexus searches the full archive — not just recent files — and returns precise answers with the source document identified.</div>
+          </div>
+          <div class="nexus-trait">
+            <div class="trait-label">Knows your document types</div>
+            <div class="trait-body">Invoices, contracts, statements, tax records, client correspondence — Nexus understands business document context and organizes accordingly.</div>
+          </div>
+          <div class="nexus-trait">
+            <div class="trait-label">Runs on your hardware</div>
+            <div class="trait-body">Installed as a local appliance in your office. No subscription to a platform that could change tomorrow. No vendor with access to your client data.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- SCENARIO -->
+<div class="wrap">
+  <section>
+    <p class="section-label">A Real Scenario</p>
+    <h2 class="section-title">The answer in seconds, not hours</h2>
+    <p class="section-sub">A client calls about an invoice from eighteen months ago. Before Strata, that's a search through folders, a dig through email, maybe a call back. With Nexus, it's a question.</p>
+    <div class="scenario-block">
+      <div class="scenario-header">
+        <div class="scenario-title">Nexus in the office</div>
+        <div class="scenario-sub">Every question answered from the local archive. No searching, no digging, no calling back.</div>
+      </div>
+      <div class="chat-mock">
+        <div class="chat-row">
+          <div class="chat-label">You</div>
+          <div class="chat-bubble-user">What invoices did we send Meridian Construction in Q3 last year and did they all get paid?</div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-label">Nexus</div>
+          <div class="chat-bubble-nexus">
+            <div class="chat-sender">Nexus</div>
+            <div class="chat-line">Found <strong>4 invoices</strong> for Meridian Construction in Q3 2025:</div>
+            <div class="chat-line">— INV-2025-0842 · Jul 14 · $3,200 · <span class="hi">Paid Aug 2</span></div>
+            <div class="chat-line">— INV-2025-0891 · Aug 1 · $1,750 · <span class="hi">Paid Aug 19</span></div>
+            <div class="chat-line">— INV-2025-0934 · Aug 28 · $4,100 · <span class="hi">Paid Sep 10</span></div>
+            <div class="chat-line">— INV-2025-0978 · Sep 15 · $2,900 · <span class="hi">Paid Oct 3</span></div>
+            <div class="chat-line" style="margin-top:0.5rem;">All four paid. Total billed: <strong>$11,950</strong>. Source documents are in <strong>Clients/Meridian/Invoices/2025/</strong>.</div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-bubble-user">Pull their current contract and tell me when it expires.</div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-bubble-nexus">
+            <div class="chat-sender">Nexus</div>
+            <div class="chat-line">Meridian Construction master services agreement — signed <strong>March 3, 2024</strong>.</div>
+            <div class="chat-line">Contract term: 24 months. <strong>Expires March 3, 2026</strong> — <span class="hi">renewal due in 51 days</span>.</div>
+            <div class="chat-line" style="margin-top:0.5rem;">Document: <strong>Clients/Meridian/Contracts/2024-03-03_meridian_contract_msa.pdf</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- HOW IT WORKS -->
+<div class="wrap">
+  <section>
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">In, organized, done</h2>
+    <p class="section-sub">Five steps from paper to a structured, AI-readable archive. No manual filing, no misfiled records, no decisions to make. Documents come in, get read, get classified, get filed — and Nexus answers questions across all of it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Capture</div>
+          <div class="step-desc">Scan paper documents with a phone or drop digital files into the incoming folder. Mail, invoices, contracts, statements — anything physical or digital enters the same pipeline.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Read</div>
+          <div class="step-desc">Text extraction reads every word from every page. Handwritten notes, stamped forms, and low-quality scans are image-preserved alongside the extracted text.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Classify</div>
+          <div class="step-desc">Nexus identifies the document type, the client or vendor it belongs to, the date, and any action items — renewals, payment due dates, outstanding balances.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">File</div>
+          <div class="step-desc">Every document gets a precise structured filename and lands in the right folder automatically. No manual decisions. No misfiled records.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Answer</div>
+          <div class="step-desc">Ask Nexus anything about your archive in plain language. He searches across every filed document and returns the answer — with the source document identified.</div>
+        </div>
+      </div>
+    </div>
+    <div class="filename-block">
+      <div class="filename-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span class="filename-bar-label">Example filenames — structured for business document types</span>
+      </div>
+      <div class="filename-examples">
+        <div class="filename"><span class="hi">2025-07-14</span>_meridian-construction_invoice_INV-2025-0842_<span class="hi">paid</span>.pdf</div>
+        <div class="filename"><span class="hi">2024-03-03</span>_meridian-construction_contract_msa_<span class="hi">EXPIRES-2026-03-03</span>.pdf</div>
+        <div class="filename"><span class="hi">2025-09-30</span>_shared_statement_quarterly_q3-2025.pdf</div>
+        <div class="filename"><span class="hi">2025-11-15</span>_acme-vendor_invoice_<span class="hi">UNPAID</span>_net30-due-dec15.pdf</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- DEPLOYMENT -->
+<div class="wrap">
+  <section>
+    <p class="section-label">Deployment</p>
+    <h2 class="section-title">A local appliance for your office</h2>
+    <p class="section-sub">Strata Business runs on a dedicated machine in your office — not in the cloud, not on a subscription platform, not on infrastructure controlled by anyone else.</p>
+    <div class="deploy-block">
+      <p class="deploy-lead">Your data stays in your building. Nexus answers questions from anywhere on your network.</p>
+      <div class="deploy-specs">
+        <div class="deploy-spec">
+          <div class="spec-label">Hardware</div>
+          <div class="spec-value">Runs on a Mac Mini or equivalent. Stays in your office. You own the machine and everything on it.</div>
+        </div>
+        <div class="deploy-spec">
+          <div class="spec-label">Access</div>
+          <div class="spec-value">Available to anyone on your office network. Ask Nexus from your desk, a laptop, or a phone — all on your local network.</div>
+        </div>
+        <div class="deploy-spec">
+          <div class="spec-label">No cloud</div>
+          <div class="spec-value">No data leaves your building. No subscription to a platform that can change its terms, raise prices, or shut down.</div>
+        </div>
+        <div class="deploy-spec">
+          <div class="spec-label">Setup</div>
+          <div class="spec-value">Boeger Labs installs and configures the full system. You start scanning on day one.</div>
+        </div>
+      </div>
+      <p class="deploy-note">Your client data is your responsibility — and nobody else's. Strata Business is designed so that Boeger Labs never has access to what's in your archive. It runs on your hardware, under your control, completely.</p>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- PRIVACY -->
+<div class="wrap">
+  <section>
+    <p class="section-label">The Principle</p>
+    <h2 class="section-title">Your client data belongs to you.</h2>
+    <div class="principle-block">
+      <p class="principle-quote">No cloud platform. No vendor access. No subscription that expires and takes your records with it.</p>
+      <div class="principle-points">
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">Client financial records, contracts, and sensitive documents never leave your hardware. Ever.</div>
+        </div>
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">Plain files with consistent naming. Readable on any computer, any operating system, with any tool — forever. No proprietary format that locks you in.</div>
+        </div>
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">As AI improves, your archive gets more capable — without moving your data anywhere or changing how it's structured.</div>
+        </div>
+        <div class="principle-point">
+          <div class="pp-marker">—</div>
+          <div class="pp-text">No company between you and your own business history. No terms of service that can change tomorrow.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule-accent"></div>
+
+<!-- CLOSING -->
+<div class="wrap">
+  <div class="closing">
+    <h2 class="closing-title">Find anything.<br><em>In seconds.</em></h2>
+    <p class="closing-body">Every document your business has ever handled — organized, searchable, and permanently yours. Strata Business turns years of accumulated paper into an archive your whole team can query in plain language.</p>
+    <a class="closing-cta" href="/cdn-cgi/l/email-protection#9cdff3f2e8fdffe8dcdef3f9fbf9eed0fdfeefb2fff3f1">Get in touch</a>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <img class="footer-logo" src="../nexus_mark.svg" alt="">
+      &copy; 2026 Boeger Labs &nbsp;�
