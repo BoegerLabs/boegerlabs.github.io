@@ -491,13 +491,82 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
-  .hero-lockup { flex-direction: column; align-items: flex-start; }
-  .hero-marks img { width: 52px; height: 52px; }
-  .nexus-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .nexus-body, .scenario-header, .chat-mock { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .deploy-block, .principle-block { padding: 2rem; }
-  .closing { padding: 4rem 0 3rem; }
-  .step { grid-template-columns: 44px 1fr; }
+  /* ── GLOBAL ── */
+  .wrap { padding: 0 1.25rem; }
+
+  /* ── NAV ── */
+  nav { padding: 1.5rem 0; }
+  .nav-brand { font-size: 11px; }
+  .nav-contact { font-size: 11px; }
+  .nav-sep { display: none; }
+  .nav-product { display: none; }
+
+  /* ── HERO ── */
+  .hero { padding: 4rem 0 3rem; }
+  .hero-lockup { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-marks img { width: 48px; height: 48px; }
+  .hero-desc { font-size: 0.95rem; }
+  .hero-sub { font-size: 0.85rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 3rem 0; }
+  .section-title { font-size: 1.5rem; }
+  .section-sub { font-size: 0.9rem; }
+
+  /* ── PROBLEM GRID ── */
+  .problem-grid { grid-template-columns: 1fr; }
+  .problem-item { padding: 1.25rem; }
+
+  /* ── NEXUS BLOCK ── */
+  .nexus-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.5rem; }
+  .nexus-body { padding: 1.25rem 1.5rem; }
+  .nexus-lead { font-size: 0.9rem; }
+  .nexus-traits { grid-template-columns: 1fr; }
+  .nexus-trait { padding: 1rem 1.25rem; }
+
+  /* ── SCENARIO / CHAT ── */
+  .scenario-block { border-radius: 12px; }
+  .scenario-header { padding: 1.25rem 1.5rem; }
+  .scenario-title { font-size: 1rem; }
+  .chat-mock { padding: 1.25rem 1.5rem; }
+  .chat-bubble-user,
+  .chat-bubble-nexus { font-size: 12px; padding: 0.9rem 1.1rem; }
+  .chat-line { font-size: 11px; line-height: 1.7; }
+
+  /* ── HOW IT WORKS STEPS ── */
+  .step { grid-template-columns: 40px 1fr; }
+  .step-content { padding: 1.25rem; }
+  .step-title { font-size: 14px; }
+  .step-desc { font-size: 12px; }
+
+  /* ── FILENAME BLOCK ── */
+  .filename-block { margin-top: 1.5rem; }
+  .filename-examples { padding: 1.25rem; gap: 0.6rem; }
+  .filename {
+    font-size: 10px;
+    word-break: break-all;
+    line-height: 1.6;
+  }
+
+  /* ── DEPLOYMENT ── */
+  .deploy-block { padding: 1.5rem; }
+  .deploy-lead { font-size: 0.95rem; }
+  .deploy-specs { grid-template-columns: 1fr; }
+  .deploy-spec { padding: 1rem 0; }
+  .deploy-note { font-size: 12px; }
+
+  /* ── PRINCIPLE BLOCK ── */
+  .principle-block { padding: 1.5rem; }
+  .principle-quote { font-size: 0.95rem; }
+  .pp-text { font-size: 13px; }
+
+  /* ── CLOSING ── */
+  .closing { padding: 3.5rem 0 2.5rem; }
+  .closing-title { font-size: 1.6rem; }
+  .closing-body { font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 2rem 0; }
 }
 </style>
 </head>
@@ -534,7 +603,7 @@ footer {
     </div>
     <h1 class="hero-title">Every document.<br><em>Always findable.</em></h1>
     <p class="hero-tagline">Private · Local · No Cloud Required</p>
-    <p class="hero-desc">A document intelligence system for small businesses. Every invoice, contract, client record, and statement — automatically organized and permanently searchable. Paired with Nexus, a local AI agent that answers questions across years of your business records in seconds.</p>
+    <p class="hero-desc">Strata is the data layer for your business — ingesting, organizing, and structuring every document so both your team and AI can search, reason, and build on it permanently. Every invoice, contract, client record, and statement — automatically organized and permanently searchable. Paired with Nexus, a local AI agent that answers questions across years of your business records in seconds.</p>
     <p class="hero-sub">Runs on hardware in your office. Your client data never leaves your building.</p>
   </section>
 </div>
@@ -785,10 +854,4 @@ footer {
   <div class="closing">
     <h2 class="closing-title">Find anything.<br><em>In seconds.</em></h2>
     <p class="closing-body">Every document your business has ever handled — organized, searchable, and permanently yours. Strata Business turns years of accumulated paper into an archive your whole team can query in plain language.</p>
-    <a class="closing-cta" href="mailto:Contact@BoegerLabs.com">Get in touch</a>
-  </div>
-
-  <footer>
-    <div class="footer-left">
-      <img class="footer-logo" src="../nexus_mark.svg" alt="">
-      &copy; 2026 Boeger Labs &nbsp;�
+    <a class="closing-cta" href="/cdn-cgi/l/email-protection#b8fbd7d6ccd9dbccf8fad7dddfddcaf4
