@@ -515,15 +515,88 @@ section:nth-of-type(4) { animation-delay: 0.2s; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
-  .hero-lockup { flex-direction: column; align-items: flex-start; }
-  .hero-marks img { width: 52px; height: 52px; }
-  .bitty-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .bitty-body, .morning-header, .telegram-mock { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .morning-flow { padding-left: 1.5rem; padding-right: 1.5rem; gap: 0.5rem; }
+  /* ── GLOBAL ── */
+  .wrap { padding: 0 1.25rem; }
+
+  /* ── NAV ── */
+  nav { padding: 1.5rem 0; }
+  .nav-brand { font-size: 11px; }
+  .nav-contact { font-size: 11px; }
+
+  /* ── HERO ── */
+  .hero { padding: 4rem 0 3rem; }
+  .hero-lockup { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-marks img { width: 48px; height: 48px; }
+  .hero-tagline { font-size: 11px; }
+  .hero-desc { font-size: 0.95rem; }
+  .hero-sub { font-size: 0.85rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 3rem 0; }
+  .section-title { font-size: 1.5rem; }
+  .section-sub { font-size: 0.9rem; }
+
+  /* ── PROBLEM GRID ── */
+  .problem-grid { grid-template-columns: 1fr; }
+  .problem-item { padding: 1.25rem; }
+
+  /* ── BITTY BLOCK ── */
+  .bitty-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.5rem; }
+  .bitty-body { padding: 1.25rem 1.5rem; }
+  .bitty-lead { font-size: 0.9rem; }
+  .bitty-traits { grid-template-columns: 1fr; }
+  .bitty-trait { padding: 1rem 1.25rem; }
+
+  /* ── MORNING BRIEFING ── */
+  .morning-header { padding: 1.5rem; }
+  .morning-title { font-size: 1rem; }
+  .telegram-mock { padding: 1.25rem 1.5rem; }
+  .tg-bubble { max-width: 100%; padding: 1rem 1.25rem; }
+  .tg-line { font-size: 11px; }
+
+  /* ── FLOW DOTS ── */
+  .morning-flow {
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .flow-step { flex-direction: row; align-items: center; gap: 0.75rem; }
   .flow-step:not(:last-child)::after { display: none; }
-  .principle-block { padding: 2rem; }
-  .closing { padding: 4rem 0 3rem; }
-  .step { grid-template-columns: 44px 1fr; }
+  .flow-dot { margin-bottom: 0; flex-shrink: 0; }
+  .flow-label { text-align: left; font-size: 11px; }
+
+  /* ── HOW IT WORKS STEPS ── */
+  .step { grid-template-columns: 40px 1fr; }
+  .step-content { padding: 1.25rem; }
+  .step-title { font-size: 14px; }
+  .step-desc { font-size: 12px; }
+
+  /* ── FILENAME BLOCK ── */
+  .filename-block { margin-top: 1.5rem; }
+  .filename-examples { padding: 1.25rem; gap: 0.6rem; }
+  .filename {
+    font-size: 10px;
+    word-break: break-all;
+    line-height: 1.6;
+  }
+
+  /* ── VISION CARDS ── */
+  .vision-cards { grid-template-columns: 1fr; gap: 0.75rem; }
+  .vision-card { padding: 1.25rem; }
+
+  /* ── PRINCIPLE BLOCK ── */
+  .principle-block { padding: 1.5rem; }
+  .principle-quote { font-size: 0.95rem; }
+  .pp-text { font-size: 13px; }
+
+  /* ── CLOSING ── */
+  .closing { padding: 3.5rem 0 2.5rem; }
+  .closing-title { font-size: 1.6rem; }
+  .closing-body { font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 2rem 0; }
 }
 </style>
 </head>
@@ -543,7 +616,7 @@ section:nth-of-type(4) { animation-delay: 0.2s; }
       <span class="nav-sep">/</span>
       <span class="nav-product">Strata Personal</span>
     </div>
-    <a class="nav-contact" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+    <a class="nav-contact" href="/cdn-cgi/l/email-protection#c98aa6a7bda8aabd898ba6acaeacbb85a8abbae7aaa6a4"><span class="__cf_email__" data-cfemail="ffbc90918b9e9c8bbfbd909a989a8db39e9d8cd19c9092">[email&#160;protected]</span></a>
   </nav>
 </div>
 
@@ -572,21 +645,21 @@ section:nth-of-type(4) { animation-delay: 0.2s; }
   <section>
     <p class="section-label">The Problem</p>
     <h2 class="section-title">Your life generates data. Most of it disappears.</h2>
-    <p class="section-sub">Documents buried in boxes. Photos with no context. Health records scattered across apps you don't control. The information exists — you just can't reach it, can't search it, can't ask questions across it.</p>
+    <p class="section-sub">Old hard drives. Buried email archives. Boxes of photographs. Decades of paper. The data exists — across two universes, digital and physical. You just can't reach it, can't search it, can't ask questions across it.</p>
     <div class="problem-grid">
       <div class="problem-item">
-        <div class="problem-icon">01 — Buried</div>
-        <div class="problem-title">The paper pile</div>
-        <div class="problem-body">Bills, medical records, insurance, tax docs — in drawers and boxes nobody's opened in years. Impossible to find the one thing you actually need.</div>
+        <div class="problem-icon">01 — Dark Data</div>
+        <div class="problem-title">Already digital. Still lost.</div>
+        <div class="problem-body">Old hard drives, forgotten email archives, social media exports you downloaded once and never opened, files buried in cloud folders. It's already yours — you just can't reach it, search it, or reason over it.</div>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">02 — Invisible</div>
-        <div class="problem-title">Dark data</div>
-        <div class="problem-body">Decades of photos with no dates or names. Health records in apps that own your data. A household history that exists but cannot be accessed or reasoned over.</div>
+        <div class="problem-icon">02 — Invisible Data</div>
+        <div class="problem-title">Never been digital at all.</div>
+        <div class="problem-body">Paper, photographs, handwritten notes, diaries, decades of accumulated documents. It doesn't appear in any search. No AI has ever seen it. It simply doesn't exist to any system you own.</div>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">03 — At risk</div>
-        <div class="problem-title">Someone else's server</div>
+        <div class="problem-icon">03 — At Risk</div>
+        <div class="problem-title">Someone else's server.</div>
         <div class="problem-body">Cloud services that can change their terms, raise prices, or shut down — taking years of your records with them. You don't own the data. You rent access to it.</div>
       </div>
     </div>
@@ -653,15 +726,15 @@ section:nth-of-type(4) { animation-delay: 0.2s; }
           <div class="tg-sender">Bitty</div>
           <div class="tg-line"><strong>Good morning, Adam.</strong></div>
           <div class="tg-divider"></div>
-          <div class="tg-line"><strong>Recovery:</strong> <span class="green">GREEN</span> — HRV up, sleep solid at 7h 42m. Good day to push.</div>
+          <div class="tg-line"><strong>Recovery:</strong> <span class="green">GREEN</span> — Sleep solid at 7h 42m, resting heart rate down. Good day to push.</div>
           <div class="tg-line"><strong>Training:</strong> Intensity cleared. Half marathon is 36 days out — stay on schedule.</div>
           <div class="tg-divider"></div>
           <div class="tg-line"><strong>Top 3 today:</strong></div>
-          <div class="tg-line">1. Mac Studio — deploy Strata watcher, test full pipeline</div>
-          <div class="tg-line">2. Telegram bot — move from MacBook Air, confirm delivery</div>
-          <div class="tg-line">3. BoegerLabs.com — Strata Personal page</div>
+          <div class="tg-line">1. Call insurance about the March claim — follow up, ref # on file</div>
+          <div class="tg-line">2. Pick up prescription — CVS on Madison, called in yesterday</div>
+          <div class="tg-line">3. Review contractor quote before Friday — kitchen project</div>
           <div class="tg-divider"></div>
-          <div class="tg-line"><strong>New in Strata:</strong> 2 documents filed overnight — electric bill and AAA renewal flagged for review.</div>
+          <div class="tg-line"><strong>New in Strata:</strong> AAA auto renewal flagged — expires in 24 days. PG&amp;E bill filed — $0 balance, previous overpayment credited.</div>
           <div class="tg-time">Delivered 7:04 AM</div>
         </div>
       </div>
@@ -693,8 +766,8 @@ section:nth-of-type(4) { animation-delay: 0.2s; }
 <div class="wrap">
   <section>
     <p class="section-label">The Data Layer</p>
-    <h2 class="section-title">Scan it in, walk away</h2>
-    <p class="section-sub">Five steps from physical paper to a structured, AI-readable archive. No manual filing. No decisions to make. Strata handles it — Bitty reads it.</p>
+    <h2 class="section-title">You scan it. Strata does the rest.</h2>
+    <p class="section-sub">Five steps from physical paper to a structured, AI-readable archive. No manual filing. No decisions to make. Strata is the data layer — it ingests, reads, classifies, and organizes everything. Bitty is the intelligence layer that sits on top, querying and reasoning over what Strata builds. Each does its job. Neither works without the other.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
@@ -811,10 +884,4 @@ section:nth-of-type(4) { animation-delay: 0.2s; }
   <div class="closing">
     <h2 class="closing-title">Nothing you capture today<br>becomes <em>obsolete.</em></h2>
     <p class="closing-body">The archive you build now is the archive a much more powerful AI reasons over later. You're not just organizing your past — you're building a household intelligence that grows with you for the rest of your life.</p>
-    <a class="closing-cta" href="mailto:Contact@BoegerLabs.com">Get in touch</a>
-  </div>
-
-  <footer>
-    <div class="footer-left">
-      <img class="footer-logo" src="../boegerlabs_mark.svg" alt="">
-      &copy; 2026 Boeger Labs &nbsp;�
+    <a class="closing-cta" href="/cdn-cgi/l/email-protection#de9db1b0aabfbdaa9e9cb1bbb9bbac92bfbca
