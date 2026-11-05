@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;display=swap');</style>
+  </defs>
+
+  <circle cx="256" cy="256" r="248" fill="#042C53"/>
+
+  <!-- Layered pyramid: narrowest/lightest on top, widest/darkest at bottom -->
+  <rect x="156" y="142" width="200" height="44" rx="10" fill="#B5D4F4"/>
+  <rect x="128" y="200" width="256" height="44" rx="10" fill="#85B7EB"/>
+  <rect x="100" y="258" width="312" height="44" rx="10" fill="#378ADD"/>
+  <rect x="72"  y="316" width="368" height="44" rx="10" fill="#185FA5"/>
+
+  <!-- "Boeger" upper pocket -->
+  <text x="256" y="104" font-family="Poppins, sans-serif" font-size="42" font-weight="500"
+    fill="#B5D4F4" text-anchor="middle">Boeger</text>
+
+  <!-- "Labs" lower pocket -->
+  <text x="256" y="430" font-family="Poppins, sans-serif" font-size="42" font-weight="500"
+    fill="#B5D4F4" text-anchor="middle">Labs</text>
+</svg>

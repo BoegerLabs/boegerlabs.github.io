@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse — Boeger Labs</title>
+<meta name="description" content="Pulse from Boeger Labs: a plain-language monthly report on your closed books and a short review call to explain what your numbers mean.">
+<link rel="icon" type="image/svg+xml" href="../boegerlabs_mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #042C53;
+  --blue-deep:  #0C447C;
+  --blue-dark:  #185FA5;
+  --blue-mid:   #378ADD;
+  --blue-light: #85B7EB;
+  --blue-pale:  #B5D4F4;
+  --bg:         #031e38;
+  --surface:    #042840;
+  --surface2:   #053050;
+  --border:     rgba(133,183,235,0.10);
+  --border-mid: rgba(133,183,235,0.18);
+  --accent-dim: rgba(181,212,244,0.06);
+  --accent-border: rgba(181,212,244,0.18);
+  --text-primary: #f0f4f8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px;
+}
+
+.glow {
+  position: fixed;
+  top: -20vh; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 600px; max-width: 100vw;
+  background: radial-gradient(ellipse at center, rgba(55,138,221,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+.wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+/* ── NAV ── */
+nav {
+  padding: 2.25rem 0;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+  animation: fadeDown 0.6s ease both;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo img { width: 32px; height: 32px; border-radius: 50%; opacity: 0.92; }
+.nav-brand { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--blue-pale); line-height: 1.25; }
+.nav-brand span { display: block; font-size: 10px; font-weight: 300; color: var(--blue-light); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-contact { font-size: 12px; font-weight: 300; color: var(--blue-light); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+.nav-contact:hover { color: var(--blue-pale); }
+
+/* ── HERO ── */
+.hero { padding: 7rem 0 5.5rem; animation: fadeUp 0.9s ease 0.15s both; }
+.hero-eyebrow { font-size: 10px; font-weight: 400; letter-spacing: 0.22em; color: var(--blue-mid); text-transform: uppercase; margin-bottom: 2.25rem; }
+.hero-mark { margin-bottom: 2rem; }
+.hero-mark img { width: 72px; height: 72px; border-radius: 50%; opacity: 0.95; display: block; }
+.hero-title { font-size: clamp(2.4rem, 6.5vw, 4rem); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 2rem; max-width: 720px; }
+.hero-title em { font-style: normal; color: var(--blue-pale); font-weight: 300; display: block; }
+.hero-statement { font-size: 1.05rem; font-weight: 300; color: var(--blue-light); max-width: 580px; line-height: 1.9; margin-bottom: 2.25rem; border-left: 1px solid var(--border-mid); padding-left: 1.5rem; }
+.hero-statement strong { color: var(--blue-pale); font-weight: 400; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue-pale); text-decoration: none;
+  border: 0.5px solid var(--accent-border); border-radius: 6px;
+  padding: 0.85rem 1.4rem;
+  background: var(--accent-dim);
+  transition: background 0.2s, border-color 0.2s, gap 0.2s;
+}
+.btn::after { content: '→'; font-size: 13px; }
+.btn:hover { background: var(--surface2); border-color: var(--border-mid); gap: 12px; }
+.link-quiet { font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); text-decoration: none; transition: color 0.2s; }
+.link-quiet:hover { color: var(--blue-pale); }
+
+/* ── SHARED ── */
+.rule { height: 0.5px; background: var(--border); }
+.rule-accent { height: 0.5px; background: linear-gradient(90deg, var(--accent-border), transparent); }
+.section { padding: 5rem 0; animation: fadeUp 0.7s ease 0.3s both; }
+.section-label { font-size: 10px; font-weight: 400; letter-spacing: 0.20em; color: var(--blue-mid); text-transform: uppercase; margin-bottom: 1rem; }
+.section-title { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: var(--text-primary); margin-bottom: 1rem; max-width: 640px; }
+.section-intro { font-size: 1rem; font-weight: 300; color: var(--blue-light); line-height: 1.85; max-width: 600px; margin-bottom: 2.75rem; }
+.section-intro strong { color: var(--blue-pale); font-weight: 400; }
+
+/* ── SERVICES ── */
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 16px 16px 0 0; overflow: hidden; }
+.service { background: var(--surface); padding: 2.5rem; display: flex; flex-direction: column; position: relative; transition: background 0.25s; }
+.service::before, .cell::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+  opacity: 0; transition: opacity 0.25s;
+}
+.service:hover, .cell:hover { background: var(--surface2); }
+.service:hover::before, .cell:hover::before { opacity: 1; }
+.service-tag { font-size: 10px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 0.6rem; }
+.service-name { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.4rem; }
+.service-line { font-size: 13px; font-weight: 400; color: var(--blue-pale); margin-bottom: 1.25rem; }
+.service-desc { font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.8; margin-bottom: 1.5rem; }
+.service-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-top: auto; }
+.service-list li { font-size: 12.5px; font-weight: 300; color: var(--blue-light); line-height: 1.6; padding-left: 1.25rem; position: relative; }
+.service-more { margin-top: 1.5rem; font-size: 11px; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: var(--blue-pale); text-decoration: none; display: inline-flex; gap: 6px; transition: gap 0.2s; }
+.service-more::after { content: '→'; }
+.service-more:hover { gap: 10px; }
+.service-list li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 7px; height: 0.5px; background: var(--blue-mid); }
+
+.custom {
+  background: var(--surface); border: 0.5px solid var(--border); border-top: none;
+  border-radius: 0 0 16px 16px; padding: 1.75rem 2.5rem;
+  display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; align-items: baseline;
+}
+.custom-name { font-size: 14px; font-weight: 500; color: var(--blue-pale); }
+.custom-desc { font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.8; }
+
+/* ── QUESTIONS ── */
+.grid { display: grid; gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.cell { background: var(--surface); padding: 1.6rem 1.75rem; position: relative; transition: background 0.25s; }
+.cell-q { font-size: 14px; font-weight: 500; color: var(--blue-pale); letter-spacing: -0.01em; line-height: 1.45; margin-bottom: 0.6rem; }
+.cell-body { font-size: 12.5px; font-weight: 300; color: var(--blue-light); line-height: 1.75; }
+
+/* ── STEPS ── */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+.step { background: var(--surface); padding: 1.75rem 1.5rem; }
+.step-num { font-size: 1.4rem; font-weight: 300; color: var(--blue-mid); margin-bottom: 0.75rem; line-height: 1; }
+.step-title { font-size: 14px; font-weight: 500; color: var(--blue-pale); margin-bottom: 0.4rem; }
+.step-body { font-size: 12.5px; font-weight: 300; color: var(--blue-light); line-height: 1.75; }
+
+/* ── TRUST BLOCK ── */
+.block { background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px; padding: 3rem; position: relative; overflow: hidden; }
+.block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-border), transparent); }
+.block-statement { font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 500; color: var(--text-primary); line-height: 1.6; letter-spacing: -0.01em; max-width: 600px; margin-bottom: 2rem; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; }
+.pillar { background: var(--surface2); padding: 1.25rem 1.5rem; }
+.pillar-word { font-size: 13px; font-weight: 500; color: var(--blue-pale); margin-bottom: 0.4rem; }
+.pillar-body { font-size: 12px; font-weight: 300; color: var(--blue-light); line-height: 1.7; }
+
+/* ── CTA ── */
+.cta { padding: 6rem 0; animation: fadeUp 0.7s ease 0.4s both; }
+.cta-title { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.25rem; max-width: 640px; }
+.cta-body { font-size: 1rem; font-weight: 300; color: var(--blue-light); line-height: 1.85; max-width: 560px; margin-bottom: 2.25rem; }
+
+/* ── FOOTER ── */
+footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-left { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 300; color: var(--blue-mid); letter-spacing: 0.05em; }
+.footer-logo { width: 18px; height: 18px; border-radius: 50%; opacity: 0.6; }
+.footer-right { font-size: 11px; font-weight: 300; letter-spacing: 0.05em; }
+.footer-right a { color: var(--blue-mid); text-decoration: none; transition: color 0.2s; }
+.footer-right a:hover { color: var(--blue-pale); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 760px) {
+  .grid-3, .pillars { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .services { grid-template-columns: 1fr; }
+  .custom { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 1.25rem; }
+  nav { padding: 1.5rem 0; }
+  .nav-brand { font-size: 11px; }
+  .nav-contact { font-size: 11px; letter-spacing: 0.03em; }
+  .hero { padding: 4rem 0 3rem; }
+  .hero-mark img { width: 56px; height: 56px; }
+  .hero-statement { font-size: 0.95rem; padding-left: 1.1rem; }
+  .section { padding: 3rem 0; }
+  .section-title { font-size: 1.5rem; }
+  .section-intro { font-size: 0.95rem; }
+  .service { padding: 1.75rem; }
+  .custom { padding: 1.5rem 1.75rem; }
+  .steps { grid-template-columns: 1fr; }
+  .block { padding: 1.75rem; }
+  .cta { padding: 4rem 0; }
+  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 2rem 0; }
+}
+
+/* ── PULSE PAGE ── */
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+.tier { background: var(--surface); padding: 2rem; }
+.tier-name { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
+.tier-line { font-size: 12.5px; color: var(--blue-pale); margin-bottom: 1.1rem; }
+.report { background: var(--surface); border: 0.5px solid var(--border-mid); border-radius: 16px; padding: 2rem 2.25rem; position: relative; overflow: hidden; }
+.report-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; border-bottom: 0.5px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.report-title { font-size: 14px; font-weight: 500; color: var(--blue-pale); }
+.report-meta { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-mid); }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; }
+.kpi { background: var(--surface2); padding: 1rem 1.1rem; }
+.kpi-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 0.35rem; }
+.kpi-value { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); letter-spacing: -0.02em; }
+.kpi-delta { font-size: 11px; font-weight: 300; color: var(--blue-light); }
+.report-notes { display: flex; flex-direction: column; gap: 0.85rem; }
+.note { font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.75; padding-left: 1.25rem; position: relative; }
+.note::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 7px; height: 0.5px; background: var(--blue-mid); }
+.note strong { color: var(--blue-pale); font-weight: 400; }
+.report-foot { margin-top: 1.5rem; font-size: 11px; font-weight: 300; color: var(--blue-mid); font-style: italic; }
+.faq { border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+.faq-item { background: var(--surface); padding: 1.5rem 1.75rem; border-bottom: 0.5px solid var(--border); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-size: 14px; font-weight: 500; color: var(--blue-pale); margin-bottom: 0.4rem; }
+.faq-a { font-size: 13px; font-weight: 300; color: var(--blue-light); line-height: 1.8; }
+@media (max-width: 760px) { .tiers { grid-template-columns: 1fr; } .kpis { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .report { padding: 1.5rem; } .tier { padding: 1.5rem; } .faq-item { padding: 1.25rem; } }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="glow"></div>
+
+<div class="wrap">
+  <nav>
+    <a class="nav-logo" href="../">
+      <img src="../boegerlabs_mark.svg" alt="Boeger Labs mark">
+      <div class="nav-brand">
+        Boeger Labs
+        <span>Business Insight</span>
+      </div>
+    </a>
+    <a class="nav-contact" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero">
+    <p class="hero-eyebrow">Pulse · Offered with your monthly bookkeeping</p>
+    <h1 class="hero-title">
+      Your books are done.
+      <em>Now know what they mean.</em>
+    </h1>
+    <p class="hero-statement">
+      Pulse turns your monthly financial statements into <strong>a short, plain-language report</strong> and <strong>a conversation</strong> about it. You'll see how the business is really doing, what changed, and what to do next, without having to decode a spreadsheet.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="mailto:Contact@BoegerLabs.com?subject=Pulse">Ask about Pulse</a>
+      <a class="link-quiet" href="#sample">See a sample</a>
+    </div>
+  </section>
+</div>
+
+<div class="rule-accent"></div>
+
+<!-- WHAT YOU GET -->
+<div class="wrap">
+  <section class="section">
+    <p class="section-label">What you get each month</p>
+    <h2 class="section-title">A clear read on your business, every month.</h2>
+    <p class="section-intro">Each Pulse starts from the books your bookkeeper has already closed. There's nothing extra for you to gather or send.</p>
+    <div class="grid grid-3">
+      <div class="cell">
+        <div class="cell-q">The big picture</div>
+        <div class="cell-body">Revenue, profit and cash this month, compared with last month and the same month last year.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-q">What changed, and why</div>
+        <div class="cell-body">The movements that matter, explained in plain language, not just listed.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-q">Spending check</div>
+        <div class="cell-body">Costs that are growing faster than sales, flagged before they become a problem.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-q">Cash and collections</div>
+        <div class="cell-body">What's owed to you, what you owe, and anything that's slipping.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-q">Next steps</div>
+        <div class="cell-body">Two or three practical things worth doing or watching this month.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-q">A review call</div>
+        <div class="cell-body">A short video call to walk through the report and answer your questions.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- SAMPLE -->
+<div class="wrap">
+  <section class="section" id="sample">
+    <p class="section-label">A sample</p>
+    <h2 class="section-title">Here's the kind of thing you'll see.</h2>
+    <p class="section-intro">An excerpt from a Pulse report for a fictional business, to show the style: short, specific, and written for an owner, not an accountant.</p>
+    <div class="report">
+      <div class="report-head">
+        <div class="report-title">Pulse · Sample Landscaping Co.</div>
+        <div class="report-meta">September · Example only</div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="kpi-label">Revenue</div><div class="kpi-value">$84,200</div><div class="kpi-delta">+9% vs Sept last year</div></div>
+        <div class="kpi"><div class="kpi-label">Net profit</div><div class="kpi-value">$7,600</div><div class="kpi-delta">9.0% margin, down from 11.4%</div></div>
+        <div class="kpi"><div class="kpi-label">Cash on hand</div><div class="kpi-value">$41,300</div><div class="kpi-delta">About 7 weeks of expenses</div></div>
+        <div class="kpi"><div class="kpi-label">Owed to you</div><div class="kpi-value">$22,900</div><div class="kpi-delta">$6,100 over 60 days</div></div>
+      </div>
+      <div class="report-notes">
+        <div class="note"><strong>Sales are up, but profit didn't follow.</strong> Revenue grew 9% over last September, but labor costs grew 18%, mostly overtime during the two weeks you were short a crew member.</div>
+        <div class="note"><strong>Fuel and materials are steady</strong> as a share of sales, so pricing is keeping up with those costs.</div>
+        <div class="note"><strong>Two customers account for most of the late balance.</strong> Worth a call this week; together they owe $5,400 past 60 days.</div>
+        <div class="note"><strong>To discuss:</strong> would a part-time hire cost less than the overtime you're paying now? We can run the numbers on the call.</div>
+      </div>
+      <div class="report-foot">Fictional business and figures, shown for illustration.</div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- OPTIONS -->
+<div class="wrap">
+  <section class="section">
+    <p class="section-label">Two options</p>
+    <h2 class="section-title">Choose how often you'd like to talk.</h2>
+    <p class="section-intro">Both include a report every month. The difference is how often we meet to go through it. Ask your bookkeeper about pricing.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="service-tag">Quarterly call</div>
+        <div class="tier-name">Pulse Essentials</div>
+        <div class="tier-line">A monthly report, with a review call each quarter.</div>
+        <ul class="service-list">
+          <li>Monthly plain-language report</li>
+          <li>Review call every three months</li>
+          <li>Questions by email any time</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="service-tag">Monthly call</div>
+        <div class="tier-name">Pulse</div>
+        <div class="tier-line">A monthly report, with a review call every month.</div>
+        <ul class="service-list">
+          <li>Monthly plain-language report</li>
+          <li>20 to 30 minute review call each month</li>
+          <li>Questions by email any time</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- HOW IT WORKS -->
+<div class="wrap">
+  <section class="section">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">It fits right into what you already do.</h2>
+    <div class="steps" style="margin-top:2rem">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Books close</div>
+        <div class="step-body">Your bookkeeper finishes the month as usual.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Report</div>
+        <div class="step-body">Your numbers are checked and turned into a clear Pulse report.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Review call</div>
+        <div class="step-body">We go through it together and answer your questions.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Next steps</div>
+        <div class="step-body">You leave knowing what's working and what to do next.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule"></div>
+
+<!-- FAQ -->
+<div class="wrap">
+  <section class="section">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title">Common questions.</h2>
+    <div class="faq" style="margin-top:2rem">
+      <div class="faq-item">
+        <div class="faq-q">Do I need to do anything each month?</div>
+        <div class="faq-a">No. Pulse works from the books your bookkeeper already closes. You just read the report and join the call.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my financial information kept confidential?</div>
+        <div class="faq-a">Yes. Your information is used only to prepare your reports and is never shared with anyone else. You'll sign a short authorization before anything is shared, so you're always in control.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this tax or accounting advice?</div>
+        <div class="faq-a">No. Pulse helps you understand and use your financial results. Tax and accounting questions stay with your tax preparer and bookkeeper.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I have a bigger question?</div>
+        <div class="faq-a">Bring it up on your call. Larger questions, like whether to hire, raise prices or expand, can be handled as a separate, fixed-price project.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I sign up?</div>
+        <div class="faq-a">Let your bookkeeper know you'd like to add Pulse, or email <a href="mailto:Contact@BoegerLabs.com?subject=Pulse" style="color:var(--blue-pale)">Contact@BoegerLabs.com</a>.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rule-accent"></div>
+
+<!-- CTA -->
+<div class="wrap">
+  <section class="cta">
+    <p class="section-label">Get started</p>
+    <h2 class="cta-title">Start understanding your numbers this month.</h2>
+    <p class="cta-body">Ask your bookkeeper to add Pulse, or send a quick note with any questions.</p>
+    <a class="btn" href="mailto:Contact@BoegerLabs.com?subject=Pulse">Contact@BoegerLabs.com</a>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="footer-left">
+      <img class="footer-logo" src="../boegerlabs_mark.svg" alt="">
+      &copy; 2026 Boeger Labs &nbsp;·&nbsp; Business Insight
+    </div>
+    <div class="footer-right">
+      <a href="../">Boeger Labs home</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
