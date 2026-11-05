@@ -4,8 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boeger Labs — Clear Answers From Your Numbers</title>
-<meta name="description" content="Boeger Labs helps small business owners understand their numbers. Decision help for specific business questions, Pulse monthly reports and review calls, and custom dashboards.">
+<meta name="description" content="Boeger Labs helps Sacramento-area small business owners understand their numbers and make better decisions: decision help, monthly Pulse reports and custom dashboards.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Boeger Labs">
+<meta property="og:title" content="Boeger Labs — Clear answers from your numbers">
+<meta property="og:description" content="Boeger Labs helps Sacramento-area small business owners understand their numbers and make better decisions: decision help, monthly Pulse reports and custom dashboards.">
+<meta property="og:url" content="https://boegerlabs.com/">
+<meta property="og:image" content="https://boegerlabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://boegerlabs.com/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Boeger Labs","url":"https://boegerlabs.com/","email":"Contact@BoegerLabs.com","telephone":"+1-916-507-8431","founder":{"@type":"Person","name":"Adam Boeger"},"areaServed":{"@type":"City","name":"Sacramento","containedInPlace":{"@type":"State","name":"California"}},"description":"Business insight for small business owners: decision help, Pulse monthly reports and custom dashboards.","logo":"https://boegerlabs.com/boegerlabs_final.png"}
+</script>
 <link rel="icon" type="image/svg+xml" href="boegerlabs_mark.svg">
+<link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -210,6 +225,32 @@ footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex
   .cta { padding: 4rem 0; }
   footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 2rem 0; }
 }
+
+/* ── READABILITY OVERRIDES (Nov 2026) ── */
+:root { --text-body: #B4CFEC; }
+*, *::before, *::after { animation: none !important; }
+.nav-brand span, .hero-eyebrow, .section-label, .service-tag, .about-role, .report-meta, .kpi-label, .cell-num { font-size: 11px; }
+.nav-contact { font-size: 13px; font-weight: 400; }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.nav-phone { font-weight: 500; color: var(--blue-pale); }
+.hero-statement { font-size: 1.15rem; font-weight: 400; color: var(--text-body); }
+.section-intro, .cta-body { font-size: 1.08rem; font-weight: 400; color: var(--text-body); }
+.cell-body, .service-desc, .step-body, .custom-desc, .faq-a, .note, .service-list li { font-size: 14.5px; font-weight: 400; color: var(--text-body); line-height: 1.7; }
+.pillar-body, .about-facts li { font-size: 14px; font-weight: 400; color: var(--text-body); line-height: 1.65; }
+.about-body p { font-size: 1.08rem; font-weight: 400; color: var(--text-body); }
+.cell-q, .cell-title, .step-title, .pillar-word, .custom-name, .faq-q, .tier-line, .service-line { font-size: 15.5px; }
+.about-facts li strong { font-size: 14.5px; }
+.kpi-delta { font-size: 12.5px; font-weight: 400; }
+.link-quiet { font-size: 12px; color: var(--blue-pale); }
+.btn { font-size: 12px; }
+.footer-left, .footer-right { font-size: 12px; color: var(--blue-light); }
+.footer-right a { color: var(--blue-light); }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+@media (max-width: 640px) {
+  .nav-email { display: none; }
+  .hero-statement { font-size: 1.05rem; }
+  .section-intro, .cta-body, .about-body p { font-size: 1rem; }
+}
 </style>
 </head>
 <body>
@@ -226,14 +267,14 @@ footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex
         <span>Business Insight</span>
       </div>
     </a>
-    <a class="nav-contact" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+    <div class="nav-links"><a class="nav-contact nav-phone" href="tel:+19165078431">(916) 507-8431</a><a class="nav-contact nav-email" href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a></div>
   </nav>
 </div>
 
 <!-- HERO -->
 <div class="wrap">
   <section class="hero">
-    <p class="hero-eyebrow">Business insight for small business owners</p>
+    <p class="hero-eyebrow">Business insight for Sacramento-area small businesses</p>
     <div class="hero-mark"><img src="boegerlabs_mark.svg" alt="Boeger Labs"></div>
     <h1 class="hero-title">
       Clear answers
@@ -244,6 +285,7 @@ footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex
     </p>
     <div class="hero-actions">
       <a class="btn" href="mailto:Contact@BoegerLabs.com?subject=Boeger%20Labs%20inquiry">Get in touch</a>
+      <a class="link-quiet" href="tel:+19165078431">Call (916) 507-8431</a>
       <a class="link-quiet" href="#services">See how it works</a>
     </div>
   </section>
@@ -420,8 +462,11 @@ footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex
   <section class="cta">
     <p class="section-label">Get started</p>
     <h2 class="cta-title">Find out what your numbers are telling you.</h2>
-    <p class="cta-body">Send a short note about your business and what you'd like to understand better. We'll set up a quick call to see how we can help.</p>
-    <a class="btn" href="mailto:Contact@BoegerLabs.com?subject=Boeger%20Labs%20inquiry">Contact@BoegerLabs.com</a>
+    <p class="cta-body">Call or send a short note about your business and what you'd like to understand better. We'll set up a quick call to see how we can help. Based in the Sacramento area; review calls work by video from anywhere.</p>
+    <div class="cta-actions">
+      <a class="btn" href="mailto:Contact@BoegerLabs.com?subject=Boeger%20Labs%20inquiry">Contact@BoegerLabs.com</a>
+      <a class="btn" href="tel:+19165078431">(916) 507-8431</a>
+    </div>
   </section>
 </div>
 
@@ -429,10 +474,10 @@ footer { padding: 2.5rem 0; border-top: 0.5px solid var(--border); display: flex
   <footer>
     <div class="footer-left">
       <img class="footer-logo" src="boegerlabs_mark.svg" alt="">
-      &copy; 2026 Boeger Labs &nbsp;·&nbsp; Business Insight
+      &copy; 2026 Boeger Labs &nbsp;·&nbsp; Sacramento, California
     </div>
     <div class="footer-right">
-      <a href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
+      <a href="tel:+19165078431">(916) 507-8431</a> &nbsp;·&nbsp; <a href="mailto:Contact@BoegerLabs.com">Contact@BoegerLabs.com</a>
     </div>
   </footer>
 </div>
